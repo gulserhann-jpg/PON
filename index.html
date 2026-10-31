@@ -1,0 +1,2282 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PON Ekosistemi - Entegre Tesis, Güvenlik ve ERP Çözümleri</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        ponDark: '#070b14',
+                        ponCard: '#0f172a',
+                        ponBorder: 'rgba(255, 255, 255, 0.08)',
+                        brandCyan: '#06b6d4',
+                        brandBlue: '#2563eb',
+                        brandAmber: '#f59e0b',
+                        brandRose: '#f43f5e',
+                        brandEmerald: '#10b981'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome 6 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.78);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glow-cyan {
+            box-shadow: 0 0 35px -5px rgba(6, 182, 212, 0.35);
+        }
+        .glow-amber {
+            box-shadow: 0 0 35px -5px rgba(245, 158, 11, 0.35);
+        }
+        .glow-rose {
+            box-shadow: 0 0 35px -5px rgba(244, 63, 94, 0.45);
+        }
+        .glow-emerald {
+            box-shadow: 0 0 35px -5px rgba(16, 185, 129, 0.35);
+        }
+        .grid-bg {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(6, 182, 212, 0.4);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(6, 182, 212, 0.7);
+        }
+    </style>
+</head>
+<body class="bg-ponDark text-slate-100 font-sans antialiased selection:bg-brandCyan selection:text-black overflow-x-hidden">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-white/5 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center font-extrabold text-white tracking-widest text-lg shadow-lg shadow-cyan-500/30 group-hover:scale-105 transition-transform">
+                    PON
+                </div>
+                <div>
+                    <span class="text-xl font-bold tracking-tight text-white flex items-center gap-1.5">
+                        PON <span class="text-xs px-2 py-0.5 rounded-full bg-cyan-950/80 text-cyan-400 border border-cyan-800 font-mono">ECOSYSTEM</span>
+                    </span>
+                    <span class="block text-[10px] text-slate-400 font-medium tracking-wide uppercase">Passage, Operations & Network</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-7 text-sm font-medium text-slate-300">
+                <a href="#ekosistem" class="hover:text-cyan-400 transition-colors">Ekosistem</a>
+                <a href="#urunler" class="hover:text-cyan-400 transition-colors">Ürünler</a>
+                <a href="#simulasyon" class="hover:text-cyan-400 transition-colors">Entegre Akış</a>
+                <a href="#hesaplayici" class="hover:text-cyan-400 transition-colors">Çözüm Seçici</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="hidden sm:flex items-center gap-3">
+                <button id="soundToggleBtn" onclick="toggleSoundFx()" title="Sistem Ses Efektlerini Aç/Kapa" class="p-2.5 rounded-xl border border-white/10 hover:border-cyan-400 bg-slate-900/80 text-slate-400 hover:text-cyan-300 transition-all text-xs flex items-center gap-1.5">
+                    <i id="soundIcon" class="fa-solid fa-volume-high text-cyan-400"></i>
+                </button>
+                <button onclick="openLoginModal()" class="px-4 py-2 rounded-xl border border-cyan-500/30 hover:border-cyan-400 bg-cyan-950/40 text-cyan-300 hover:text-white font-medium text-xs transition-all flex items-center gap-1.5 shadow-sm">
+                    <i class="fa-solid fa-chart-line text-cyan-400"></i>
+                    <span>Tesis Operasyon Merkezi</span>
+                </button>
+                <a href="#demo" class="px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-medium text-xs transition-all duration-200 shadow-lg shadow-cyan-500/25 flex items-center gap-1.5">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span>Demo Talep Et</span>
+                </a>
+            </div>
+
+            <!-- Mobile menu button -->
+            <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/60 focus:outline-none">
+                <i class="fa-solid fa-bars text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Mobile dropdown menu -->
+        <div id="mobileMenu" class="hidden md:hidden px-4 pt-2 pb-4 space-y-2 bg-slate-950/95 border-b border-white/10">
+            <a href="#ekosistem" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800">Ekosistem</a>
+            <a href="#urunler" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800">Ürünler</a>
+            <a href="#simulasyon" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800">Entegre Akış</a>
+            <a href="#hesaplayici" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800">Çözüm Seçici</a>
+            <div class="pt-2 flex flex-col gap-2">
+                <button onclick="toggleMobileMenu(); openLoginModal()" class="w-full text-center py-2.5 rounded-xl border border-cyan-500/40 text-cyan-300 font-medium text-xs">Tesis Operasyon Merkezi (Giriş)</button>
+                <a href="#demo" onclick="toggleMobileMenu()" class="w-full text-center py-2.5 rounded-xl bg-cyan-600 text-white font-medium text-xs">Demo Talep Et</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN LANDING PAGE VIEW -->
+    <main id="mainLanding" class="transition-opacity duration-300">
+        
+        <!-- HERO SECTION -->
+        <section class="relative min-h-[90vh] pt-36 pb-20 flex items-center justify-center grid-bg overflow-hidden">
+            <!-- Background Glow Orbs -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-cyan-600/20 via-blue-600/15 to-transparent rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/70 border border-cyan-500/30 text-cyan-300 text-xs font-mono font-medium mb-8">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                    <span>TÜM FİZİKSEL VE DİJİTAL TESİS OPERASYONLARI TEK ÇATIDA</span>
+                </div>
+
+                <!-- Main Title -->
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-5xl mx-auto leading-tight">
+                    Kapıdan ERP'ye <br/>
+                    <span class="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
+                        Kesintisiz Akıllı Tesis Ekosistemi
+                    </span>
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="mt-6 text-base sm:text-lg text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed">
+                    <strong class="text-white font-semibold">PON</strong> (Passage, Operations & Network); araç plakası tanımadan personel geçişine, ziyaretçi onayından kurumsal ERP'ye ve yapay zekâlı anlık yangın tespitine kadar tüm tesisinizi tek bir zekâda birleştirir.
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+                    <button onclick="loginAs('Tesis Yöneticisi')" class="px-7 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-sm shadow-xl shadow-cyan-500/25 flex items-center gap-2 group transition-all">
+                        <span>Canlı Tesis Panelini Başlat</span>
+                        <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                    <a href="#urunler" class="px-7 py-3.5 rounded-2xl glass-panel hover:bg-slate-800 text-slate-200 font-semibold text-sm transition-all border border-white/10 flex items-center gap-2">
+                        <i class="fa-solid fa-layer-group text-cyan-400"></i>
+                        <span>5 Çekirdek Modülü İncele</span>
+                    </a>
+                </div>
+
+                <!-- Metric Highlights -->
+                <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                    <div class="glass-panel p-4 rounded-2xl">
+                        <div class="text-2xl sm:text-3xl font-extrabold text-cyan-400 font-mono">18 ms</div>
+                        <div class="text-xs text-slate-400 mt-1">ALPR Plaka Tanıma Hızı</div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-2xl">
+                        <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400 font-mono">%99.8</div>
+                        <div class="text-xs text-slate-400 mt-1">3D Yüz & Biyometrik Doğruluk</div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-2xl">
+                        <div class="text-2xl sm:text-3xl font-extrabold text-rose-400 font-mono">&lt; 3 sn</div>
+                        <div class="text-xs text-slate-400 mt-1">Yapay Zekâ Yangın Algılama</div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-2xl">
+                        <div class="text-2xl sm:text-3xl font-extrabold text-blue-400 font-mono">%100</div>
+                        <div class="text-xs text-slate-400 mt-1">ERP / PDKS Canlı Entegrasyon</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCT MODULES GRID SECTION -->
+        <section id="urunler" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-mono text-cyan-400 tracking-wider uppercase bg-cyan-950/60 px-3 py-1 rounded-full border border-cyan-800">PON MODÜLER MİMARİSİ</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3">Tesisin Her Noktasına Özelleşmiş 5 Çözüm</h2>
+                <p class="text-slate-400 text-sm mt-3">Birbiriyle doğrudan konuşan, izole kalmayan ve veriyi anında ERP'ye aktaran entegre modül ailesi.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- 1. PARKON -->
+                <div class="glass-panel p-6 rounded-3xl border border-cyan-500/20 hover:border-cyan-400/50 transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-cyan-950 border border-cyan-700/40 flex items-center justify-center text-cyan-400 text-xl mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-car-side"></i>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-bold text-white">PARKON</h3>
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800">PTS / ALPR</span>
+                        </div>
+                        <p class="text-xs text-slate-300 mt-2 font-medium">Akıllı Plaka Tanıma & Bariyer Otomasyonu</p>
+                        <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                            Yüksek çözünürlüklü yapay zekâ OCR kameraları ile hız ve açı fark etmeksizin araç plakalarını anında tanır. Kara liste kontrolü, abone otoparkı ve otomatik bariyer açma süreçlerini yönetir.
+                        </p>
+                        <ul class="mt-4 space-y-1.5 text-xs text-slate-300 font-mono">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400 text-[10px]"></i> %99.8 Doğruluk Oranı</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400 text-[10px]"></i> Kantar & Tartım Entegrasyonu</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400 text-[10px]"></i> Otopark Doluluk Göstergesi</li>
+                        </ul>
+                    </div>
+                    <button onclick="openProductModal('PARKON')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-900 hover:bg-cyan-950 text-cyan-300 hover:text-white border border-cyan-800/50 text-xs font-semibold transition-all">
+                        Modülü İncele
+                    </button>
+                </div>
+
+                <!-- 2. WORKON -->
+                <div class="glass-panel p-6 rounded-3xl border border-blue-500/20 hover:border-blue-400/50 transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-blue-950 border border-blue-700/40 flex items-center justify-center text-blue-400 text-xl mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-bold text-white">WORKON</h3>
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-950 text-blue-300 border border-blue-800">KURUMSAL ERP</span>
+                        </div>
+                        <p class="text-xs text-slate-300 mt-2 font-medium">PDKS, Lojistik Tartım & Süreç Entegrasyonu</p>
+                        <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                            Turnikelerden ve nizamiye kapılarından akan fiziksel geçiş verilerini SAP, Logo ve Nebim gibi ERP sistemleriyle anlık senkronize eder. Puantaj ve irsaliye süreçlerini otomatikleştirir.
+                        </p>
+                        <ul class="mt-4 space-y-1.5 text-xs text-slate-300 font-mono">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400 text-[10px]"></i> Bordro & Mesai Hesaplama</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400 text-[10px]"></i> Kantar Otomatik İrsaliye</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400 text-[10px]"></i> Dinamik Vardiya Yönetimi</li>
+                        </ul>
+                    </div>
+                    <button onclick="openProductModal('WORKON')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-900 hover:bg-blue-950 text-blue-300 hover:text-white border border-blue-800/50 text-xs font-semibold transition-all">
+                        Modülü İncele
+                    </button>
+                </div>
+
+                <!-- 3. VISITON -->
+                <div class="glass-panel p-6 rounded-3xl border border-emerald-500/20 hover:border-emerald-400/50 transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-950 border border-emerald-700/40 flex items-center justify-center text-emerald-400 text-xl mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-users-viewfinder"></i>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-bold text-white">VISITON</h3>
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">ZİYARETÇİ CRM</span>
+                        </div>
+                        <p class="text-xs text-slate-300 mt-2 font-medium">Ön Randevu, KVKK & Temassız QR Bilet</p>
+                        <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                            Ziyaretçiler tesise gelmeden önce SMS/E-posta ile tek kullanımlık QR kodlarını alır. KVKK metinleri dijital onaylanır, ev sahibine anlık 'Misafiriniz geldi' bildirimi gönderilir.
+                        </p>
+                        <ul class="mt-4 space-y-1.5 text-xs text-slate-300 font-mono">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> Hızlı Danışma Kiosk Modu</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> Dijital KVKK & Gizlilik İmzası</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> PARKON ile Plaka Eşleştirme</li>
+                        </ul>
+                    </div>
+                    <button onclick="openProductModal('VISITON')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-900 hover:bg-emerald-950 text-emerald-300 hover:text-white border border-emerald-800/50 text-xs font-semibold transition-all">
+                        Modülü İncele
+                    </button>
+                </div>
+
+                <!-- 4. ACCESON -->
+                <div class="glass-panel p-6 rounded-3xl border border-amber-500/20 hover:border-amber-400/50 transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-amber-950 border border-amber-700/40 flex items-center justify-center text-amber-400 text-xl mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-fingerprint"></i>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-bold text-white">ACCESON</h3>
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800">GEÇİŞ KONTROL</span>
+                        </div>
+                        <p class="text-xs text-slate-300 mt-2 font-medium">Biyometrik, Turnike & Yetki Matrisi</p>
+                        <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                            3D yüz tanıma terminalleri, turnikeler ve kartlı geçiş kontrolörlerini tek bir merkezi izin mimarisinde birleştirir. Anti-passback denetimiyle güvenliği en üst düzeye çıkarır.
+                        </p>
+                        <ul class="mt-4 space-y-1.5 text-xs text-slate-300 font-mono">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i> Anti-Passback İhlal Koruması</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i> Mobil NFC & BLE Geçiş</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i> Kat & Oda Bazlı Yetkilendirme</li>
+                        </ul>
+                    </div>
+                    <button onclick="openProductModal('ACCESON')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-900 hover:bg-amber-950 text-amber-300 hover:text-white border border-amber-800/50 text-xs font-semibold transition-all">
+                        Modülü İncele
+                    </button>
+                </div>
+
+                <!-- 5. FIREON -->
+                <div class="glass-panel p-6 rounded-3xl border border-rose-500/20 hover:border-rose-400/50 transition-all group flex flex-col justify-between lg:col-span-2">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-rose-950 border border-rose-700/40 flex items-center justify-center text-rose-400 text-xl mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-fire-extinguisher"></i>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-bold text-white">FIREON</h3>
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800">YAPAY ZEKÂ YANGIN & SÖNDÜRME</span>
+                        </div>
+                        <p class="text-xs text-slate-300 mt-2 font-medium">Optik/Termal Erken Tespit ve Hedefe Kilitli Otonom Söndürme</p>
+                        <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                            Geleneksel duman dedektörlerinin yetersiz kaldığı yüksek tavanlı depolarda ve üretim tesislerinde alev ve kıvılcımı 3 saniye içinde tespit eder. Robotik nozullar ile alevin kaynağına su/köpük fırlatarak anında lokal müdahale gerçekleştirir.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4 text-xs text-slate-300 font-mono">
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-rose-400 text-[10px]"></i> 3 Saniyede Optik Alev Tespiti</div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-rose-400 text-[10px]"></i> Koordinat Odaklı Hedef Söndürme</div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-rose-400 text-[10px]"></i> Yanlış Alarm Filtreleme (AI)</div>
+                            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-rose-400 text-[10px]"></i> ACCESON Tahliye Entegrasyonu</div>
+                        </div>
+                    </div>
+                    <button onclick="openProductModal('FIREON')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-900 hover:bg-rose-950 text-rose-300 hover:text-white border border-rose-800/50 text-xs font-semibold transition-all">
+                        Modülü İncele
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- LIVE EVENT SIMULATION SECTION -->
+        <section id="simulasyon" class="py-20 bg-slate-950/60 border-y border-white/5">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="text-xs font-mono text-cyan-400 tracking-wider uppercase bg-cyan-950/60 px-3 py-1 rounded-full border border-cyan-800">CANLI SENARYO SİMÜLATÖRÜ</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-3">Bir Tesis Olayında Modüller Nasıl Konuşur?</h2>
+                    <p class="text-slate-400 text-sm mt-2">Aşağıdaki adımlara tıklayarak sistemlerin arka planda nasıl senkronize veri alışverişi yaptığını test edin.</p>
+                </div>
+
+                <!-- Simulation Steps Nav -->
+                <div class="flex flex-wrap items-center justify-center gap-2 mb-8">
+                    <button onclick="setSimStep(1)" id="simStepBtn-1" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-cyan-600 text-white shadow-md transition-all flex items-center gap-1.5">
+                        <span>1. PARKON (Plaka)</span>
+                    </button>
+                    <button onclick="setSimStep(2)" id="simStepBtn-2" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-900/90 text-slate-400 hover:text-white border border-white/5 transition-all flex items-center gap-1.5">
+                        <span>2. VISITON (CRM)</span>
+                    </button>
+                    <button onclick="setSimStep(3)" id="simStepBtn-3" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-900/90 text-slate-400 hover:text-white border border-white/5 transition-all flex items-center gap-1.5">
+                        <span>3. ACCESON (Kapı)</span>
+                    </button>
+                    <button onclick="setSimStep(4)" id="simStepBtn-4" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-900/90 text-slate-400 hover:text-white border border-white/5 transition-all flex items-center gap-1.5">
+                        <span>4. WORKON (ERP)</span>
+                    </button>
+                    <button onclick="setSimStep(5)" id="simStepBtn-5" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-900/90 text-slate-400 hover:text-white border border-white/5 transition-all flex items-center gap-1.5">
+                        <span>5. FIREON (Yangın)</span>
+                    </button>
+                </div>
+
+                <!-- Simulation Output Box -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                    <div class="glass-panel p-6 rounded-3xl border border-white/10 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span id="simStepBadge" class="text-xs font-mono px-2.5 py-1 rounded bg-cyan-950 text-cyan-300 border border-cyan-800">PTS / GİRİŞ NİZAMİYESİ</span>
+                                <span class="text-xs text-slate-500 font-mono">Gerçek Zamanlı</span>
+                            </div>
+                            <h3 id="simStepTitle" class="text-lg font-bold text-white mb-2">Adım 1: PARKON ALPR & Ziyaretçi Karşılama</h3>
+                            <p id="simStepDesc" class="text-xs text-slate-300 leading-relaxed">
+                                34 PON 1907 plakalı araç nizamiyeye yaklaştı. 4K yapay zekâ OCR plaka bilgisini 18ms içinde okuyarak VISITON ve WORKON veri tabanıyla eşleştirdi.
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-400">
+                            <span>Sensör Verisi: OK</span>
+                            <span class="text-emerald-400">Gecikme: 14ms</span>
+                        </div>
+                    </div>
+
+                    <!-- JSON Event Stream Simulator -->
+                    <div class="glass-panel p-6 rounded-3xl border border-white/10 bg-slate-950/90 font-mono text-xs overflow-x-auto">
+                        <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/5 text-slate-400">
+                            <span class="text-cyan-400 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                                WebSocket JSON API Payload
+                            </span>
+                            <span>UTF-8</span>
+                        </div>
+                        <pre id="simStepJson" class="text-cyan-300 whitespace-pre-wrap leading-relaxed">{
+  "event": "ALPR_PLATE_DETECTED",
+  "plate": "34 PON 1907",
+  "accuracy": "99.8%",
+  "gate_id": "NIZAMIYE_01",
+  "action": "QUERY_VISITON_WHITELIST"
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FACILITY SOLUTION CALCULATOR -->
+        <section id="hesaplayici" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs font-mono text-cyan-400 tracking-wider uppercase bg-cyan-950/60 px-3 py-1 rounded-full border border-cyan-800">ÇÖZÜM VE İHTİYAÇ BELİRLEYİCİ</span>
+                <h2 class="text-3xl font-extrabold text-white mt-3">Tesisinize Özel PON Mimarisi</h2>
+                <p class="text-slate-400 text-sm mt-2">Tesis tipinizi seçin; hangi modüllere ihtiyaç duyacağınızı ve tahmini verimlilik artışını anında hesaplayın.</p>
+            </div>
+
+            <div class="glass-panel p-8 rounded-3xl max-w-4xl mx-auto border border-cyan-500/20">
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+                    <button onclick="calculateFacility('fabrika')" id="facBtn-fabrika" class="p-4 rounded-2xl bg-cyan-600 text-white font-bold text-xs flex flex-col items-center gap-2 transition-all">
+                        <i class="fa-solid fa-industry text-lg"></i>
+                        <span>Fabrika / Üretim</span>
+                    </button>
+                    <button onclick="calculateFacility('plaza')" id="facBtn-plaza" class="p-4 rounded-2xl bg-slate-900 border border-white/10 text-slate-400 hover:text-white font-bold text-xs flex flex-col items-center gap-2 transition-all">
+                        <i class="fa-solid fa-building text-lg"></i>
+                        <span>İş Merkezi / Plaza</span>
+                    </button>
+                    <button onclick="calculateFacility('depo')" id="facBtn-depo" class="p-4 rounded-2xl bg-slate-900 border border-white/10 text-slate-400 hover:text-white font-bold text-xs flex flex-col items-center gap-2 transition-all">
+                        <i class="fa-solid fa-warehouse text-lg"></i>
+                        <span>Lojistik Depo</span>
+                    </button>
+                    <button onclick="calculateFacility('kampus')" id="facBtn-kampus" class="p-4 rounded-2xl bg-slate-900 border border-white/10 text-slate-400 hover:text-white font-bold text-xs flex flex-col items-center gap-2 transition-all">
+                        <i class="fa-solid fa-graduation-cap text-lg"></i>
+                        <span>Kampüs / Hastane</span>
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center pt-4 border-t border-white/10">
+                    <div>
+                        <h4 class="text-sm font-mono text-cyan-400 uppercase">Önerilen PON Paketi</h4>
+                        <h3 id="calcPackageTitle" class="text-2xl font-bold text-white mt-1">Endüstriyel Üretim Paketi</h3>
+                        <p id="calcPackageDesc" class="text-xs text-slate-400 mt-2 leading-relaxed">
+                            Ağır araç kantar tartımları, vardiyalı personel devam takibi, yüksek riskli üretim alanlarında otonom yangın algılama ve çevre nizamiyesi güvenliğini birleştiren tam kapsamlı paket.
+                        </p>
+                        <div class="mt-4 flex flex-wrap gap-2" id="calcModuleBadges">
+                            <span class="px-2.5 py-1 rounded-lg bg-cyan-950 border border-cyan-800 text-cyan-300 text-xs font-mono font-bold">PARKON</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-blue-950 border border-blue-800 text-blue-300 text-xs font-mono font-bold">WORKON</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-emerald-950 border border-emerald-800 text-emerald-300 text-xs font-mono font-bold">VISITON</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-amber-950 border border-amber-800 text-amber-300 text-xs font-mono font-bold">ACCESON</span>
+                            <span class="px-2.5 py-1 rounded-lg bg-rose-950 border border-rose-800 text-rose-300 text-xs font-mono font-bold">FIREON</span>
+                        </div>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-slate-950/80 border border-white/10 space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs font-mono text-slate-400 mb-1">
+                                <span>Operasyonel Hız Artışı</span>
+                                <span id="calcMetricSpeed" class="text-cyan-400 font-bold">+%75</span>
+                            </div>
+                            <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                <div id="calcBarSpeed" class="h-full bg-cyan-400 rounded-full transition-all duration-500" style="width: 75%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-mono text-slate-400 mb-1">
+                                <span>Manuel Hata ve Kaçak Azalması</span>
+                                <span id="calcMetricError" class="text-emerald-400 font-bold">-%90</span>
+                            </div>
+                            <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                <div id="calcBarError" class="h-full bg-emerald-400 rounded-full transition-all duration-500" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs font-mono text-slate-400 mb-1">
+                                <span>Yangın & Risk Müdahale Süresi</span>
+                                <span id="calcMetricRisk" class="text-rose-400 font-bold">3 Saniye</span>
+                            </div>
+                            <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                                <div id="calcBarRisk" class="h-full bg-rose-500 rounded-full transition-all duration-500" style="width: 95%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DEMO REQUEST FORM -->
+        <section id="demo" class="py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel p-8 sm:p-12 rounded-3xl border border-cyan-500/30 text-center relative overflow-hidden">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white text-2xl mx-auto mb-6 shadow-xl shadow-cyan-500/30">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+                <h2 class="text-3xl font-extrabold text-white">Tesisiniz İçin Canlı Keşif & Demo İsteyin</h2>
+                <p class="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto mt-2">Mühendislerimiz tesisinizin fiziksel mimarisini incelesin, donanım ve ERP entegrasyon fizibilitesini hazırlasın.</p>
+
+                <form onsubmit="handleDemoSubmit(event)" class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
+                    <div>
+                        <label class="block text-xs font-mono text-slate-400 mb-1">Ad Soyad / Ünvan</label>
+                        <input type="text" required placeholder="Ahmet Yılmaz" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-cyan-400">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono text-slate-400 mb-1">Kurumsal E-posta</label>
+                        <input type="email" required placeholder="ahmet@sirketiniz.com" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-cyan-400">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono text-slate-400 mb-1">Şirket / Tesis Adı</label>
+                        <input type="text" required placeholder="Mega Lojistik A.Ş." class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-cyan-400">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono text-slate-400 mb-1">İlgilenilen Modüller</label>
+                        <select class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-cyan-400">
+                            <option>Tüm PON Ekosistemi (5 Modül)</option>
+                            <option>PARKON (Plaka Tanıma & Otopark)</option>
+                            <option>WORKON + ACCESON (ERP & PDKS)</option>
+                            <option>FIREON (Yangın Algılama & Söndürme)</option>
+                            <option>VISITON (Ziyaretçi CRM)</option>
+                        </select>
+                    </div>
+                    <div class="sm:col-span-2 mt-2">
+                        <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-cyan-500/25">
+                            Ücretsiz Keşif ve Demo Randevusu Oluştur
+                        </button>
+                    </div>
+                </form>
+                <div id="demoSuccessAlert" class="hidden mt-4 p-3 rounded-xl bg-emerald-950 border border-emerald-500 text-emerald-300 text-xs font-mono">
+                    ✓ Talebiniz başarıyla alındı! Mühendisimiz en geç 2 saat içinde iletişime geçecektir.
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="border-t border-white/5 py-12 bg-slate-950 text-slate-400 text-xs">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-7 h-7 rounded-lg bg-cyan-600 text-white flex items-center justify-center font-bold text-xs">
+                        P
+                    </div>
+                    <span>PON | Passage, Operations & Network - Tüm Hakları Saklıdır.</span>
+                </div>
+                <div class="flex items-center gap-6 font-mono text-[11px]">
+                    <a href="#ekosistem" class="hover:text-cyan-400">Mimari</a>
+                    <a href="#urunler" class="hover:text-cyan-400">Ürünler</a>
+                    <button onclick="openLoginModal()" class="hover:text-cyan-400">Müşteri Portali</button>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- PRODUCT DETAIL MODAL -->
+    <div id="productDetailModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-md p-4">
+        <div class="glass-panel w-full max-w-2xl rounded-3xl border border-cyan-500/30 p-6 sm:p-8 relative bg-slate-950">
+            <button onclick="closeProductModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white p-2">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="flex items-center gap-3 mb-4">
+                <div id="modalIconWrap" class="w-12 h-12 rounded-2xl bg-cyan-950 flex items-center justify-center text-cyan-400 text-xl border border-cyan-800">
+                    <i id="modalIcon" class="fa-solid fa-car"></i>
+                </div>
+                <div>
+                    <h3 id="modalTitle" class="text-2xl font-bold text-white">PARKON</h3>
+                    <span id="modalCategory" class="text-xs font-mono text-cyan-400">Plaka Tanıma Sistemi</span>
+                </div>
+            </div>
+            <p id="modalDesc" class="text-xs sm:text-sm text-slate-300 leading-relaxed">Açıklama yükleniyor...</p>
+            <div class="mt-6 pt-4 border-t border-white/10">
+                <h4 class="text-xs font-mono text-slate-400 uppercase mb-3">Teknik Öne Çıkan Özellikler</h4>
+                <div id="modalFeatures" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-slate-300">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+            <div class="mt-6 pt-4 border-t border-white/10 flex justify-end gap-3">
+                <button onclick="closeProductModal()" class="px-4 py-2 rounded-xl bg-slate-900 text-slate-300 text-xs font-semibold hover:bg-slate-800">Kapat</button>
+                <a href="#demo" onclick="closeProductModal()" class="px-5 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold">Bu Modül İçin Teklif Al</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- CLIENT PORTAL LOGIN MODAL -->
+    <div id="loginModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/85 backdrop-blur-md p-4">
+        <div class="glass-panel w-full max-w-md rounded-3xl border border-cyan-500/40 p-6 sm:p-8 relative bg-slate-950">
+            <button onclick="closeLoginModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white p-2">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center font-bold text-white text-xl mx-auto mb-3 shadow-lg shadow-cyan-500/20">
+                    PON
+                </div>
+                <h3 class="text-xl font-bold text-white">Tesis Yönetim Portali Girişi</h3>
+                <p class="text-xs text-slate-400 mt-1">Yetkili personel veya tesis yöneticisi girişi</p>
+            </div>
+
+            <!-- Fast Role Buttons for Interactive Demo -->
+            <div class="space-y-2 mb-4">
+                <span class="block text-[11px] font-mono text-slate-400 uppercase text-center">Hızlı Canlı Önizleme:</span>
+                <div class="grid grid-cols-2 gap-2">
+                    <button onclick="loginAs('Tesis Yöneticisi')" class="py-2.5 px-3 rounded-xl bg-cyan-950 hover:bg-cyan-900 border border-cyan-700/60 text-cyan-300 text-xs font-semibold transition-colors flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-user-tie"></i>
+                        <span>Tesis Yöneticisi</span>
+                    </button>
+                    <button onclick="loginAs('Güvenlik Amiri')" class="py-2.5 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-white/10 text-slate-300 text-xs font-semibold transition-colors flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>Güvenlik Amiri</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="relative flex py-2 items-center">
+                <div class="flex-grow border-t border-white/10"></div>
+                <span class="flex-shrink mx-3 text-slate-500 text-[10px] font-mono">VEYA KİMLİK BİLGİLERİYLE</span>
+                <div class="flex-grow border-t border-white/10"></div>
+            </div>
+
+            <form onsubmit="event.preventDefault(); loginAs('Operatör');" class="space-y-3 mt-2">
+                <div>
+                    <label class="block text-xs font-mono text-slate-400 mb-1">Kullanıcı Kodu / E-Posta</label>
+                    <input type="text" value="admin@pon.tech" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-cyan-400">
+                </div>
+                <div>
+                    <label class="block text-xs font-mono text-slate-400 mb-1">Güvenlik PIN / Şifre</label>
+                    <input type="password" value="••••••••" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-cyan-400">
+                </div>
+                <button type="submit" class="w-full py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-bold transition-all mt-2">
+                    Panele Güvenli Giriş Yap
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ENHANCED DASHBOARD VIEW: MULTI-TAB WITH DIGITAL TWIN, ALPR SEARCH, EVACUATION, ERP, FIREON RADAR -->
+    <div id="dashboardView" class="hidden min-h-screen pt-24 pb-12 px-4 sm:px-6 lg:px-8 bg-ponDark">
+        <div class="max-w-7xl mx-auto space-y-6">
+            
+            <!-- EMERGENCY "KOD KIRMIZI" BANNER -->
+            <div id="emergencyAlertBanner" class="hidden glass-panel p-4 rounded-2xl border-2 border-rose-500 bg-rose-950/90 glow-rose text-white flex flex-col md:flex-row items-center justify-between gap-4 animate-pulse">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-rose-600 flex items-center justify-center font-bold text-white text-lg">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h3 class="font-black text-rose-200 tracking-wider font-mono text-base uppercase">DİKKAT: KOD KIRMIZI ACİL DURUM TAHLİYESİ AKTİF</h3>
+                            <span class="px-2 py-0.5 rounded text-[10px] bg-red-600 text-white font-mono font-bold">112 İTFAİYE BİLDİRİLDİ</span>
+                        </div>
+                        <p class="text-xs text-rose-200 mt-0.5">
+                            ACCESON: Tüm turnike kilitleri serbest bırakıldı. PARKON: Nizamiyeler kaldırıldı. FIREON: Otonom söndürme nozulları Zone-3'e kilitlendi.
+                        </p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button onclick="disarmCodeRed()" class="px-4 py-2 rounded-xl bg-white text-rose-900 font-bold text-xs hover:bg-rose-100 transition-all flex items-center gap-1.5 shadow-lg">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>Alarmı Sıfırla & Güvenli Moda Geç</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Top Header & Navigation Tabs -->
+            <div class="glass-panel p-4 sm:p-5 rounded-2xl flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 border border-cyan-500/30">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center font-bold text-white text-base shadow-lg shadow-cyan-500/20">
+                        PON
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h2 class="text-lg font-bold text-white">Canlı Tesis İzleme & Operasyon Merkezi</h2>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-950 text-emerald-400 border border-emerald-800 flex items-center gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                                CANLI ÇEVRİMİÇİ
+                            </span>
+                        </div>
+                        <p class="text-xs text-slate-400">
+                            Rol: <span id="currentUserRole" class="text-cyan-300 font-semibold">Tesis Yöneticisi</span> |
+                            Tesis: <span class="text-slate-200 font-medium">Teknopark Kampüs & Lojistik Fabrikası</span> |
+                            Tahliye Nüfusu: <span id="liveHeadcount" class="text-emerald-400 font-mono font-bold">418 Kişi</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Navigation Tabs for Dashboard -->
+                <div class="flex flex-wrap items-center gap-1.5 p-1 bg-slate-950/80 rounded-xl border border-white/5">
+                    <button onclick="switchDashTab('genel')" id="tabBtn-genel" class="dash-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-cyan-600 text-white flex items-center gap-1.5 transition-all">
+                        <i class="fa-solid fa-display"></i>
+                        <span>Genel Bakış & Kameralar</span>
+                    </button>
+                    <button onclick="switchDashTab('twin')" id="tabBtn-twin" class="dash-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white flex items-center gap-1.5 transition-all">
+                        <i class="fa-solid fa-cube text-cyan-400"></i>
+                        <span>Tesis Dijital İkizi (Harita)</span>
+                    </button>
+                    <button onclick="switchDashTab('parkon')" id="tabBtn-parkon" class="dash-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white flex items-center gap-1.5 transition-all">
+                        <i class="fa-solid fa-car-side text-cyan-400"></i>
+                        <span>PARKON Plaka Ara & Otopark</span>
+                    </button>
+                    <button onclick="switchDashTab('erp')" id="tabBtn-erp" class="dash-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white flex items-center gap-1.5 transition-all">
+                        <i class="fa-solid fa-briefcase text-blue-400"></i>
+                        <span>WORKON ERP & PDKS</span>
+                    </button>
+                    <button onclick="switchDashTab('turnstile')" id="tabBtn-turnstile" class="dash-tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white flex items-center gap-1.5 transition-all">
+                        <i class="fa-solid fa-id-card-clip text-amber-400"></i>
+                        <span>Geçiş / QR Test</span>
+                    </button>
+                </div>
+
+                <!-- Quick Action Buttons -->
+                <div class="flex items-center gap-2">
+                    <button onclick="triggerCodeRed()" title="Tüm kapıları açar, siren çalar, söndürmeyi hazırlar" class="px-3 py-2 rounded-xl bg-rose-600/20 hover:bg-rose-600 border border-rose-500/50 hover:border-rose-400 text-rose-300 hover:text-white text-xs font-bold font-mono flex items-center gap-1.5 transition-all shadow-lg shadow-rose-950">
+                        <i class="fa-solid fa-bell text-rose-400"></i>
+                        <span>KOD KIRMIZI</span>
+                    </button>
+                    <button onclick="closeDashboard()" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center gap-1.5 transition-all">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <span>Çıkış</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- TAB 1: GENEL BAKIŞ & CANLI KAMERALAR (PARKON + FIREON) -->
+            <div id="tabContent-genel" class="space-y-6">
+                <!-- Live KPI Metric Cards -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="glass-panel p-4 rounded-2xl border-white/5 relative overflow-hidden group">
+                        <div class="flex items-center justify-between text-xs text-slate-400 font-mono">
+                            <span>PARKON // Günlük Araç</span>
+                            <i class="fa-solid fa-car text-cyan-400"></i>
+                        </div>
+                        <div class="text-2xl font-bold text-white mt-1">1,248 <span class="text-xs text-emerald-400 font-normal">+%12</span></div>
+                        <div class="text-[11px] text-slate-400 mt-1">Otopark Doluluk: <span class="text-cyan-300 font-bold">142/180 (%78)</span></div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-2xl border-white/5 relative overflow-hidden group">
+                        <div class="flex items-center justify-between text-xs text-slate-400 font-mono">
+                            <span>ACCESON // Geçiş Kayıt</span>
+                            <i class="fa-solid fa-fingerprint text-amber-400"></i>
+                        </div>
+                        <div class="text-2xl font-bold text-white mt-1">3,890 <span class="text-xs text-emerald-400 font-normal">%99.9 Doğrulama</span></div>
+                        <div class="text-[11px] text-slate-400 mt-1">İçerideki Personel: <span class="text-amber-300 font-bold">400 Kişi</span></div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-2xl border-white/5 relative overflow-hidden group">
+                        <div class="flex items-center justify-between text-xs text-slate-400 font-mono">
+                            <span>VISITON // Ziyaretçi CRM</span>
+                            <i class="fa-solid fa-users text-emerald-400"></i>
+                        </div>
+                        <div class="text-2xl font-bold text-white mt-1">64 <span class="text-xs text-cyan-400 font-normal">Aktif Randevu</span></div>
+                        <div class="text-[11px] text-slate-400 mt-1">İçeride Misafir: <span class="text-emerald-300 font-bold">18 Kişi (QR Onaylı)</span></div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-2xl border-white/5 relative overflow-hidden group">
+                        <div class="flex items-center justify-between text-xs text-slate-400 font-mono">
+                            <span>FIREON // Risk Durumu</span>
+                            <i class="fa-solid fa-shield-virus text-rose-400"></i>
+                        </div>
+                        <div class="text-2xl font-bold text-emerald-400 mt-1 flex items-center gap-2">
+                            <span>GÜVENLİ</span>
+                            <span class="text-xs font-mono text-slate-400 font-normal">0 Tehdit</span>
+                        </div>
+                        <div class="text-[11px] text-slate-400 mt-1">32 Sensör Bölgesi • 23.8°C Ort.</div>
+                    </div>
+                </div>
+
+                <!-- Live Camera Grid (PARKON & FIREON Canvas) -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- PARKON LIVE FEED -->
+                    <div class="glass-panel p-5 rounded-3xl border border-cyan-500/30 flex flex-col justify-between relative overflow-hidden">
+                        <div class="flex items-center justify-between mb-3 border-b border-white/5 pb-2">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping"></span>
+                                <span class="font-bold text-white text-sm">PARKON // CAM-01: Giriş Nizamiyesi ALPR</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-[11px] font-mono text-cyan-400 bg-cyan-950 px-2 py-0.5 rounded border border-cyan-800">FPS: 30</span>
+                                <span class="text-[11px] font-mono text-slate-400" id="parkonTimeCode">00:00:00</span>
+                            </div>
+                        </div>
+
+                        <div class="relative w-full aspect-video bg-black/95 rounded-2xl overflow-hidden border border-white/10 shadow-inner">
+                            <canvas id="parkonCanvas" class="w-full h-full block"></canvas>
+                            
+                            <div class="absolute top-3 left-3 flex flex-col gap-1.5 pointer-events-none">
+                                <div class="px-2.5 py-1 rounded-md bg-black/70 backdrop-blur-sm border border-white/10 text-[10px] font-mono text-emerald-400 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <span>OCR OKUYUCU: AKTİF (%99.8)</span>
+                                </div>
+                                <div id="barrierStatusBadge" class="px-2.5 py-1 rounded-md bg-cyan-950/80 backdrop-blur-sm border border-cyan-500/40 text-[10px] font-mono text-cyan-300">
+                                    BARİYER DURUMU: OTOMATİK (KAPALI)
+                                </div>
+                            </div>
+
+                            <div class="absolute bottom-3 right-3 bg-slate-900/90 border border-cyan-500/50 backdrop-blur-md px-3.5 py-1.5 rounded-xl text-right pointer-events-none">
+                                <div class="text-[9px] font-mono text-slate-400 uppercase">Son Tanınan Araç</div>
+                                <div class="text-sm font-black font-mono text-white tracking-wider" id="activeDetectedPlate">34 PON 1907</div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-3 border-t border-white/5 flex flex-wrap items-center justify-between text-xs font-mono text-slate-400 gap-2">
+                            <span>Çözünürlük: 4K UHD ALPR (Edge OCR)</span>
+                            <div class="flex items-center gap-2">
+                                <button onclick="triggerManualBarrier()" class="px-2.5 py-1 rounded-lg bg-cyan-950 hover:bg-cyan-900 border border-cyan-700/60 text-cyan-300 text-[11px]">Manuel Aç</button>
+                                <button onclick="simulateVehicleArrival()" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-white text-[11px]">Araç Gönder</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FIREON LIVE FEED -->
+                    <div class="glass-panel p-5 rounded-3xl border border-rose-500/30 flex flex-col justify-between relative overflow-hidden">
+                        <div class="flex items-center justify-between mb-3 border-b border-white/5 pb-2">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping"></span>
+                                <span class="font-bold text-white text-sm">FIREON // CAM-04: Üretim & Depo Termal Gözlem</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-[11px] font-mono text-rose-400 bg-rose-950 px-2 py-0.5 rounded border border-rose-800">TERMAL AI</span>
+                                <span class="text-[11px] font-mono text-slate-400" id="fireonTimeCode">00:00:00</span>
+                            </div>
+                        </div>
+
+                        <div class="relative w-full aspect-video bg-black/95 rounded-2xl overflow-hidden border border-white/10 shadow-inner">
+                            <canvas id="fireonCanvas" class="w-full h-full block"></canvas>
+
+                            <div class="absolute top-3 left-3 flex flex-col gap-1.5 pointer-events-none">
+                                <div class="px-2.5 py-1 rounded-md bg-black/70 backdrop-blur-sm border border-white/10 text-[10px] font-mono text-white flex items-center gap-1.5">
+                                    <i class="fa-solid fa-temperature-half text-rose-400"></i>
+                                    <span>ORTALAMA ISI: <strong id="thermalTempText" class="text-rose-300">23.8 °C</strong></span>
+                                </div>
+                                <div id="fireStatusBadge" class="px-2.5 py-1 rounded-md bg-emerald-950/80 backdrop-blur-sm border border-emerald-500/40 text-[10px] font-mono text-emerald-300">
+                                    ALEV / DUMAN İHTİMALİ: %0.02 (NORMAL)
+                                </div>
+                            </div>
+
+                            <div class="absolute bottom-3 right-3 bg-slate-900/90 border border-rose-500/50 backdrop-blur-md px-3.5 py-1.5 rounded-xl text-right pointer-events-none">
+                                <div class="text-[9px] font-mono text-slate-400 uppercase">Söndürme Nozulu #03</div>
+                                <div class="text-xs font-bold font-mono text-emerald-400" id="nozzleStatusText">NÖBET MODU (HAZIR)</div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-3 border-t border-white/5 flex flex-wrap items-center justify-between text-xs font-mono text-slate-400 gap-2">
+                            <span>Spektrum: 8-14 µm Termal Optik</span>
+                            <div class="flex items-center gap-2">
+                                <button onclick="triggerSimulatedFireAlert()" class="px-2.5 py-1 rounded-lg bg-rose-950 hover:bg-rose-900 border border-rose-700/60 text-rose-300 text-[11px]">Yangın Test Alarmı</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Stream & Hardware Status -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-2 glass-panel p-5 rounded-3xl border border-white/10">
+                        <div class="flex items-center justify-between mb-4 border-b border-white/5 pb-2">
+                            <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-wave-square text-cyan-400"></i>
+                                Anlık Tesis Hareket & Entegrasyon Akışı (WebSocket)
+                            </h3>
+                            <button onclick="clearDashboardLogs()" class="text-[10px] font-mono text-slate-400 hover:text-white">Temizle</button>
+                        </div>
+                        <div id="dashboardEventList" class="space-y-2.5 font-mono text-xs max-h-64 overflow-y-auto pr-1">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+
+                    <div class="glass-panel p-5 rounded-3xl border border-white/10 flex flex-col justify-between">
+                        <div>
+                            <div class="text-sm font-bold text-white mb-3 flex items-center justify-between">
+                                <span>Donanım & API Durumu</span>
+                                <span class="text-[10px] text-emerald-400 font-mono">100% ONLINE</span>
+                            </div>
+                            <div class="space-y-2.5 text-xs">
+                                <div class="p-2.5 rounded-xl bg-slate-950 border border-white/5 flex items-center justify-between">
+                                    <span class="text-slate-300 flex items-center gap-2">
+                                        <span class="w-2 h-2 rounded-full bg-cyan-400"></span> PARKON PTS
+                                    </span>
+                                    <span class="font-mono text-cyan-400">4 Kamera Aktif</span>
+                                </div>
+                                <div class="p-2.5 rounded-xl bg-slate-950 border border-white/5 flex items-center justify-between">
+                                    <span class="text-slate-300 flex items-center gap-2">
+                                        <span class="w-2 h-2 rounded-full bg-blue-400"></span> WORKON ERP
+                                    </span>
+                                    <span class="font-mono text-blue-400">SAP Senkron (0 ms)</span>
+                                </div>
+                                <div class="p-2.5 rounded-xl bg-slate-950 border border-white/5 flex items-center justify-between">
+                                    <span class="text-slate-300 flex items-center gap-2">
+                                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span> VISITON CRM
+                                    </span>
+                                    <span class="font-mono text-emerald-400">18 İçeride Ziyaretçi</span>
+                                </div>
+                                <div class="p-2.5 rounded-xl bg-slate-950 border border-white/5 flex items-center justify-between">
+                                    <span class="text-slate-300 flex items-center gap-2">
+                                        <span class="w-2 h-2 rounded-full bg-amber-400"></span> ACCESON Kapı
+                                    </span>
+                                    <span class="font-mono text-amber-400">6 Turnike Online</span>
+                                </div>
+                                <div class="p-2.5 rounded-xl bg-slate-950 border border-white/5 flex items-center justify-between">
+                                    <span class="text-slate-300 flex items-center gap-2">
+                                        <span class="w-2 h-2 rounded-full bg-rose-400"></span> FIREON AI
+                                    </span>
+                                    <span class="font-mono text-rose-400">32 Bölge Güvenli</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-white/5 text-[11px] text-slate-500 font-mono flex justify-between">
+                            <span>Sistem Gecikmesi: 12ms</span>
+                            <span>WebSocket: TLS 1.3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: TESİS DİJİTAL İKİZİ (DIGITAL TWIN) -->
+            <div id="tabContent-twin" class="hidden space-y-6">
+                <div class="glass-panel p-6 rounded-3xl border border-cyan-500/30">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4 border-b border-white/10 pb-4">
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                                    <i class="fa-solid fa-microchip text-cyan-400"></i>
+                                    Tesis Dijital İkizi (Canlı Kat & Yerleşim Planı)
+                                </h3>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-cyan-950 text-cyan-300 border border-cyan-800">2D/3D ETKİLEŞİMLİ</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mt-1">Harita üzerindeki nizamiyelere, turnikelere veya yangın nozullarına tıklayarak anlık telemetri durumunu görüntüleyin.</p>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-3 text-xs font-mono">
+                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span> PARKON Kapı</span>
+                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span> ACCESON Turnike</span>
+                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span> FIREON Nozul</span>
+                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-blue-400"></span> WORKON Kantar</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                        <div class="lg:col-span-8 bg-slate-950/90 rounded-2xl border border-white/10 p-4 relative overflow-hidden">
+                            <canvas id="digitalTwinCanvas" class="w-full h-80 sm:h-96 block cursor-crosshair rounded-xl"></canvas>
+                            <div class="absolute bottom-6 left-6 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-white/10 backdrop-blur-md text-[11px] font-mono text-slate-300">
+                                Haritada bir bileşene tıklayın veya üzerine gelin.
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-4 glass-panel p-5 rounded-2xl border border-white/10 flex flex-col justify-between">
+                            <div>
+                                <div class="text-xs font-mono text-cyan-400 uppercase tracking-wider mb-2">SEÇİLİ BİLEŞEN TELEMETRİSİ</div>
+                                <h4 id="twinCompTitle" class="text-xl font-bold text-white">Nizamiye Giriş Kapısı #01</h4>
+                                <div id="twinCompModule" class="text-xs font-mono text-cyan-300 mt-0.5">MODÜL: PARKON (PTS)</div>
+
+                                <div class="mt-4 space-y-2.5 text-xs font-mono">
+                                    <div class="p-2.5 rounded-xl bg-slate-900 border border-white/5 flex justify-between">
+                                        <span class="text-slate-400">Durum:</span>
+                                        <span id="twinCompStatus" class="text-emerald-400 font-bold">AKTİF & GÜVENLİ</span>
+                                    </div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900 border border-white/5 flex justify-between">
+                                        <span class="text-slate-400">Cihaz ID:</span>
+                                        <span id="twinCompId" class="text-white">GATE-PARKON-01</span>
+                                    </div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900 border border-white/5 flex justify-between">
+                                        <span class="text-slate-400">Son Olay:</span>
+                                        <span id="twinCompEvent" class="text-cyan-300 truncate max-w-[160px]">34 PON 1907 Geçiş Yaptı</span>
+                                    </div>
+                                    <div class="p-2.5 rounded-xl bg-slate-900 border border-white/5 flex justify-between">
+                                        <span class="text-slate-400">IP & Port:</span>
+                                        <span id="twinCompIp" class="text-slate-300">192.168.10.24:8080</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 pt-4 border-t border-white/5 flex items-center gap-2">
+                                <button onclick="triggerSelectedTwinAction()" id="twinActionBtn" class="w-full py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5">
+                                    <i class="fa-solid fa-bolt"></i>
+                                    <span>Komut Gönder (Bariyeri Test Et)</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: PARKON PLAKA ARAMA VE OTOPARK MATRİSİ -->
+            <div id="tabContent-parkon" class="hidden space-y-6">
+                <div class="glass-panel p-6 rounded-3xl border border-cyan-500/30">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-white/10">
+                        <div>
+                            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-car text-cyan-400"></i>
+                                PARKON // Plaka Sorgulama & Otopark Park Yeri Matrisi
+                            </h3>
+                            <p class="text-xs text-slate-400 mt-1">Geçmiş araç girişlerini arayın, kara listeyi yönetin ve otopark doluluğunu blok bazlı izleyin.</p>
+                        </div>
+                        <div class="flex items-center gap-2 w-full sm:w-auto">
+                            <div class="relative w-full sm:w-64">
+                                <input type="text" id="plateSearchInput" oninput="searchPlateTable()" placeholder="Plaka veya Sürücü Ara..." class="w-full pl-9 pr-3 py-2 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-cyan-500">
+                                <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-500 text-xs"></i>
+                            </div>
+                            <button onclick="addMockPlateRecord()" class="px-3 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold whitespace-nowrap flex items-center gap-1.5">
+                                <i class="fa-solid fa-plus"></i>
+                                <span>Yeni Plaka Ekle</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Parking Slot Visual Grid -->
+                    <div class="mb-6 p-4 rounded-2xl bg-slate-950/80 border border-white/5">
+                        <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-3">
+                            <span>A BLOK VIP & YÖNETİM OTOPARKI (12 Slot)</span>
+                            <div class="flex items-center gap-3">
+                                <span class="flex items-center gap-1 text-emerald-400"><span class="w-2 h-2 rounded bg-emerald-500"></span> Boş</span>
+                                <span class="flex items-center gap-1 text-rose-400"><span class="w-2 h-2 rounded bg-rose-500"></span> Dolu</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-12 gap-2 text-center text-xs font-mono" id="parkingSlotsGrid">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto rounded-xl border border-white/5">
+                        <table class="w-full text-left text-xs font-mono">
+                            <thead class="bg-slate-900/90 text-slate-400 border-b border-white/10">
+                                <tr>
+                                    <th class="p-3">Zaman</th>
+                                    <th class="p-3">Plaka No</th>
+                                    <th class="p-3">Sürücü / Şirket</th>
+                                    <th class="p-3">Giriş Kapısı</th>
+                                    <th class="p-3">Liste Tipi</th>
+                                    <th class="p-3">Durum</th>
+                                    <th class="p-3 text-right">Aksiyon</th>
+                                </tr>
+                            </thead>
+                            <tbody id="plateTableBody" class="divide-y divide-white/5 text-slate-300">
+                                <!-- Injected by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: WORKON ERP & PDKS / KANTAR TABLOSU -->
+            <div id="tabContent-erp" class="hidden space-y-6">
+                <div class="glass-panel p-6 rounded-3xl border border-blue-500/30">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-white/10">
+                        <div>
+                            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-briefcase text-blue-400"></i>
+                                WORKON // ERP PDKS, Vardiya & Kantar İrsaliye Konsolu
+                            </h3>
+                            <p class="text-xs text-slate-400 mt-1">Tesis içi personel puantajı, lojistik araç tonajları ve SAP/Logo ERP otomatik senkronizasyon kayıtları.</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="exportErpDataToCsv()" class="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold flex items-center gap-1.5 transition-all">
+                                <i class="fa-solid fa-file-excel"></i>
+                                <span>ERP Raporu İndir (.CSV)</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+                        <div class="p-4 rounded-2xl bg-slate-950/80 border border-white/5">
+                            <div class="text-xs text-slate-400 font-mono">Bugünkü Vardiya Katılımı</div>
+                            <div class="text-xl font-bold text-white mt-1">392 / 410 Personel (%95.6)</div>
+                            <div class="text-[11px] text-emerald-400 mt-0.5">18 İzinli / Raporlu</div>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-950/80 border border-white/5">
+                            <div class="text-xs text-slate-400 font-mono">Lojistik Kantar Net Tartım</div>
+                            <div class="text-xl font-bold text-blue-400 mt-1">1,482.60 Ton</div>
+                            <div class="text-[11px] text-slate-400 mt-0.5">38 Tır / İrsaliyeli Çıkış</div>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-950/80 border border-white/5">
+                            <div class="text-xs text-slate-400 font-mono">ERP Kuyruk Senkronizasyonu</div>
+                            <div class="text-xl font-bold text-emerald-400 mt-1">SIFIR BEKLEME</div>
+                            <div class="text-[11px] text-slate-400 mt-0.5">SAP API: 200 OK (22ms)</div>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto rounded-xl border border-white/5">
+                        <table class="w-full text-left text-xs font-mono">
+                            <thead class="bg-slate-900/90 text-slate-400 border-b border-white/10">
+                                <tr>
+                                    <th class="p-3">Kayıt No</th>
+                                    <th class="p-3">İşlem Tipi</th>
+                                    <th class="p-3">Personel / Araç</th>
+                                    <th class="p-3">Departman / Malzeme</th>
+                                    <th class="p-3">Zaman</th>
+                                    <th class="p-3">Tartım / Mesai</th>
+                                    <th class="p-3">ERP Durumu</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/5 text-slate-300">
+                                <tr>
+                                    <td class="p-3 text-cyan-400 font-bold">#ERP-9941</td>
+                                    <td class="p-3"><span class="px-2 py-0.5 rounded bg-blue-950 text-blue-300 border border-blue-800">Kantar Sevkiyat</span></td>
+                                    <td class="p-3 text-white">34 KNT 220 (Ali Çelik)</td>
+                                    <td class="p-3">Granül Hammadde</td>
+                                    <td class="p-3">12:38:14</td>
+                                    <td class="p-3 text-emerald-400">Net: 24,180 kg</td>
+                                    <td class="p-3"><span class="text-emerald-400 font-bold">İrsaliye Kesildi ✓</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 text-cyan-400 font-bold">#PDKS-4012</td>
+                                    <td class="p-3"><span class="px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800">PDKS Giriş</span></td>
+                                    <td class="p-3 text-white">Selin Korkmaz (Mühendis)</td>
+                                    <td class="p-3">Ar-Ge Departmanı</td>
+                                    <td class="p-3">08:24:11</td>
+                                    <td class="p-3 text-slate-300">Mesai Başladı</td>
+                                    <td class="p-3"><span class="text-emerald-400 font-bold">Bordroya İşlendi ✓</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 text-cyan-400 font-bold">#VIS-1102</td>
+                                    <td class="p-3"><span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Ziyaretçi QR</span></td>
+                                    <td class="p-3 text-white">Burak Şen (Siemens)</td>
+                                    <td class="p-3">Satınalma Toplantısı</td>
+                                    <td class="p-3">10:15:00</td>
+                                    <td class="p-3 text-slate-300">Süre: 1s 45dk</td>
+                                    <td class="p-3"><span class="text-cyan-400 font-bold">CRM Güncellendi ✓</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 5: ACCESON GEÇİŞ TEST EDİCİ -->
+            <div id="tabContent-turnstile" class="hidden space-y-6">
+                <div class="glass-panel p-6 rounded-3xl border border-amber-500/30">
+                    <div class="mb-6 pb-4 border-b border-white/10">
+                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-id-card-clip text-amber-400"></i>
+                            ACCESON & VISITON // Canlı Turnike & Geçiş Simülatörü
+                        </h3>
+                        <p class="text-xs text-slate-400 mt-1">Kart okutma, yüz tanıma ve QR kod bilet doğrulamasını anlık test edin. Yetki matrisinin ve anti-passback kuralının cevabını inceleyin.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                        <div class="space-y-4">
+                            <label class="block text-xs font-mono text-slate-400">Test Edilecek Geçiş Senaryosu:</label>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <button onclick="simulateAccessPassage('kart_yetkili')" class="p-3.5 rounded-2xl bg-slate-900 border border-white/10 hover:border-amber-400 text-left transition-all group">
+                                    <div class="flex items-center justify-between text-amber-400 text-xs font-mono mb-1">
+                                        <span>YETKİLİ KART / YÜZ</span>
+                                        <i class="fa-solid fa-check"></i>
+                                    </div>
+                                    <div class="font-bold text-white text-sm">Personel (Mert Demir)</div>
+                                    <div class="text-[11px] text-slate-400">Turnike #01 Normal Geçiş</div>
+                                </button>
+
+                                <button onclick="simulateAccessPassage('qr_ziyaretci')" class="p-3.5 rounded-2xl bg-slate-900 border border-white/10 hover:border-emerald-400 text-left transition-all group">
+                                    <div class="flex items-center justify-between text-emerald-400 text-xs font-mono mb-1">
+                                        <span>VISITON QR BİLET</span>
+                                        <i class="fa-solid fa-qrcode"></i>
+                                    </div>
+                                    <div class="font-bold text-white text-sm">Misafir (Ayşe Kaya)</div>
+                                    <div class="text-[11px] text-slate-400">Tek Seferlik Mobil İzin</div>
+                                </button>
+
+                                <button onclick="simulateAccessPassage('yetkisiz_deneme')" class="p-3.5 rounded-2xl bg-slate-900 border border-white/10 hover:border-rose-400 text-left transition-all group">
+                                    <div class="flex items-center justify-between text-rose-400 text-xs font-mono mb-1">
+                                        <span>YETKİSİZ ALAN GİRİŞİ</span>
+                                        <i class="fa-solid fa-ban"></i>
+                                    </div>
+                                    <div class="font-bold text-white text-sm">Sunucu Odası Kilidi</div>
+                                    <div class="text-[11px] text-slate-400">İzinsiz Kart Okutma</div>
+                                </button>
+
+                                <button onclick="simulateAccessPassage('anti_passback')" class="p-3.5 rounded-2xl bg-slate-900 border border-white/10 hover:border-amber-400 text-left transition-all group">
+                                    <div class="flex items-center justify-between text-amber-400 text-xs font-mono mb-1">
+                                        <span>ANTI-PASSBACK İHLALİ</span>
+                                        <i class="fa-solid fa-arrows-rotate"></i>
+                                    </div>
+                                    <div class="font-bold text-white text-sm">İçerideyken Tekrar Okutma</div>
+                                    <div class="text-[11px] text-slate-400">Kart Paylaşımı Engelleme</div>
+                                </button>
+                            </div>
+
+                            <div class="p-4 rounded-2xl bg-slate-950 border border-white/5 space-y-2">
+                                <label class="text-xs font-mono text-cyan-400">Manuel Bilet/QR Kodu Gir:</label>
+                                <div class="flex gap-2">
+                                    <input type="text" id="manualQrInput" placeholder="Örn: VISITON-TOKEN-883" value="VISITON-TOKEN-883" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-white/10 text-white text-xs font-mono focus:outline-none focus:border-cyan-400">
+                                    <button onclick="testManualQrToken()" class="px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs whitespace-nowrap">Doğrula</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Turnstile Physical Graphic -->
+                        <div class="p-6 rounded-2xl bg-slate-950 border-2 border-amber-500/30 flex flex-col items-center justify-center text-center space-y-4">
+                            <div class="w-24 h-24 rounded-full bg-slate-900 border-4 border-amber-400/40 flex items-center justify-center text-3xl shadow-lg shadow-amber-500/10" id="turnstileIconWrap">
+                                <i id="turnstileIcon" class="fa-solid fa-door-closed text-amber-400"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs font-mono uppercase tracking-wider text-slate-400">TURNİKE MEKANİK DURUMU</div>
+                                <h4 id="turnstileStatusTitle" class="text-2xl font-bold text-white mt-1">KİLİTLİ (BEKLEMEDE)</h4>
+                                <p id="turnstileFeedbackMsg" class="text-xs font-mono text-slate-400 mt-1">Kart okutulması veya QR taranması bekleniyor...</p>
+                            </div>
+                            <div class="w-full p-3 rounded-xl bg-black/60 border border-white/5 font-mono text-[11px] text-left text-emerald-400 space-y-1" id="turnstileRawLog">
+                                <div>&gt; ACCESON_GATE_CONTROLLER [ONLINE]</div>
+                                <div>&gt; ANTI_PASSBACK_ENGINE [STRICT_ENABLED]</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FLOATING PON AI ASSISTANT WIDGET -->
+    <div id="aiAssistantContainer" class="fixed bottom-6 left-6 z-50">
+        <button id="aiBubbleBtn" onclick="toggleAiAssistant()" class="glass-panel p-3.5 rounded-2xl border border-cyan-400/40 text-white flex items-center gap-2.5 shadow-2xl hover:scale-105 transition-transform group glow-cyan">
+            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white text-xs font-bold">
+                <i class="fa-solid fa-robot"></i>
+            </div>
+            <div class="text-left hidden sm:block">
+                <div class="text-xs font-bold text-white">PON AI Asistanı</div>
+                <div class="text-[10px] text-cyan-300 font-mono">Tesis Verisi Çevrimiçi</div>
+            </div>
+        </button>
+
+        <!-- Expanded AI Chat Window -->
+        <div id="aiChatWindow" class="hidden glass-panel w-80 sm:w-96 rounded-3xl border border-cyan-500/30 overflow-hidden shadow-2xl flex-col h-[440px] absolute bottom-0 left-0 bg-slate-950/95">
+            <div class="p-3.5 bg-slate-900 border-b border-white/10 flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-7 h-7 rounded-lg bg-cyan-500 flex items-center justify-center text-black text-xs font-bold">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs font-bold text-white">PON Tesis Zekası (AI)</div>
+                        <div class="text-[10px] text-emerald-400 font-mono">5 Modüle Bağlı (Canlı)</div>
+                    </div>
+                </div>
+                <button onclick="toggleAiAssistant()" class="p-1.5 rounded-lg text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div id="aiChatMessages" class="p-4 flex-1 overflow-y-auto space-y-3 text-xs font-mono">
+                <div class="p-3 rounded-2xl bg-slate-900/90 border border-white/5 text-slate-200">
+                    <span class="text-cyan-400 font-bold block mb-1">PON AI Asistanı:</span>
+                    Merhaba! Tesisinizdeki tüm modülleri (PARKON, WORKON, VISITON, ACCESON, FIREON) izliyorum. Örneğin şunları sorabilirsiniz:
+                    <div class="mt-2 space-y-1">
+                        <button onclick="askPresetQuestion('Bugün kaç araç girdi?')" class="text-left w-full text-[11px] text-cyan-300 hover:underline">• "Bugün kaç araç girdi?"</button>
+                        <button onclick="askPresetQuestion('Yangın veya ısı riski var mı?')" class="text-left w-full text-[11px] text-cyan-300 hover:underline">• "Yangın veya ısı riski var mı?"</button>
+                        <button onclick="askPresetQuestion('Depo nizamiyesini aç')" class="text-left w-full text-[11px] text-cyan-300 hover:underline">• "Depo nizamiyesini aç"</button>
+                    </div>
+                </div>
+            </div>
+
+            <form onsubmit="handleAiChatSubmit(event)" class="p-3 bg-slate-900 border-t border-white/10 flex gap-2">
+                <input type="text" id="aiUserInput" placeholder="Tesis hakkında bir şey sorun..." class="flex-1 px-3 py-2 rounded-xl bg-slate-950 border border-white/10 text-white text-xs focus:outline-none focus:border-cyan-400">
+                <button type="submit" class="px-3.5 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-bold">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MAIN LOGIC JAVASCRIPT -->
+    <script>
+        // Web Audio Synthesizer (No external audio files needed)
+        let audioCtx = null;
+        let isSoundEnabled = true;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playBeep(freq = 600, duration = 0.1, type = 'sine') {
+            if (!isSoundEnabled) return;
+            try {
+                initAudio();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (err) {}
+        }
+
+        function playSiren() {
+            if (!isSoundEnabled) return;
+            try {
+                initAudio();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(450, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.35);
+                gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                gain.gain.linearRampToValueAtTime(0.001, audioCtx.currentTime + 0.7);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.7);
+            } catch (err) {}
+        }
+
+        function toggleSoundFx() {
+            isSoundEnabled = !isSoundEnabled;
+            const icon = document.getElementById('soundIcon');
+            if (isSoundEnabled) {
+                icon.className = 'fa-solid fa-volume-high text-cyan-400';
+                playBeep(880, 0.08);
+            } else {
+                icon.className = 'fa-solid fa-volume-xmark text-slate-500';
+            }
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Global State & Timers
+        let parkonAnimId = null;
+        let fireonAnimId = null;
+        let twinAnimId = null;
+        let clockTimer = null;
+        let isDashboardActive = false;
+        let codeRedActive = false;
+
+        // Mock Plate Data for PARKON Search & Management
+        let platesDatabase = [
+            { plate: "34 PON 1907", driver: "Kemal Tan (Yönetim Kurulu)", type: "VIP", gate: "Nizamiye #01", status: "İçeride (A-02)" },
+            { plate: "06 ABC 882", driver: "Mehmet Demir (Tedarikçi)", type: "Abone", gate: "Lojistik Kapı", status: "İçeride (Lojistik)" },
+            { plate: "35 TUR 440", driver: "Bilinmeyen Araç", type: "Kara Liste", gate: "Nizamiye #01", status: "GİRİŞ ENGELLENDİ" },
+            { plate: "16 BRS 109", driver: "Ayşe Kaya (Misafir - Siemens)", type: "Ziyaretçi", gate: "Nizamiye #02", status: "İçeride (A-05)" },
+            { plate: "34 KNT 220", driver: "Ali Çelik (Tır - Hammadde)", type: "Lojistik", gate: "Kantar Kapısı", status: "Tartımda" }
+        ];
+
+        // Scenario Simulation Steps Definitions
+        const simScenarioSteps = {
+            1: {
+                title: "Adım 1: PARKON ALPR & Ziyaretçi Karşılama",
+                module: "PARKON",
+                badge: "PTS / GİRİŞ NİZAMİYESİ",
+                desc: "34 PON 1907 plakalı araç nizamiyeye yaklaştı. 4K yapay zekâ OCR plaka bilgisini 18ms içinde okuyarak VISITON ve WORKON veri tabanıyla eşleştirdi.",
+                json: {
+                    event: "ALPR_PLATE_DETECTED",
+                    plate: "34 PON 1907",
+                    accuracy: "99.8%",
+                    gate_id: "NIZAMIYE_01",
+                    action: "QUERY_VISITON_WHITELIST"
+                }
+            },
+            2: {
+                title: "Adım 2: VISITON CRM & Randevu Eşleştirme",
+                module: "VISITON",
+                badge: "ZİYARETÇİ CRM",
+                desc: "Plaka verisi ön kayıtlı ziyaretçi randevusuyla eşleşti. Ev sahibi direktöre 'Misafiriniz nizamiyeden giriş yaptı' SMS bildirimi iletildi.",
+                json: {
+                    event: "VISITOR_VALIDATED",
+                    host_employee: "Kemal Tan (Yönetim)",
+                    qr_token: "VISITON-TOKEN-883",
+                    status: "AUTHORIZED",
+                    access_level: "PLAZA_A_BLOCK"
+                }
+            },
+            3: {
+                title: "Adım 3: ACCESON Hız Kapısı & Biyometrik Doğrulama",
+                module: "ACCESON",
+                badge: "GEÇİŞ KONTROL",
+                desc: "Ziyaretçi plaza giriş turnikesine ulaştı. Mobil QR bilet veya 3D yüz tarama doğrulanarak turnike kanadı açıldı ve anti-passback kaydı başlatıldı.",
+                json: {
+                    event: "TURNSTILE_OPENED",
+                    turnstile_id: "TURN-ACCESON-01",
+                    method: "MOBILE_QR_VERIFIED",
+                    anti_passback: "ENGAGED_INSIDE"
+                }
+            },
+            4: {
+                title: "Adım 4: WORKON ERP Senkronizasyonu & PDKS",
+                module: "WORKON",
+                badge: "KURUMSAL ERP",
+                desc: "Giriş yapan araç ve personel verisi SAP / Kurumsal ERP altyapısına işlendi. Personel devam puantajı ve otopark slot rezervasyonu anında güncellendi.",
+                json: {
+                    event: "ERP_TRANSACTION_COMMITTED",
+                    erp_target: "SAP_ERP_S4HANA",
+                    sync_latency: "14ms",
+                    attendance_status: "CHECKED_IN"
+                }
+            },
+            5: {
+                title: "Adım 5: FIREON Otonom Yangın Nöbeti & Güvenlik",
+                module: "FIREON",
+                badge: "YANGIN & TERMAL AI",
+                desc: "Tesis genelinde 32 termal bölge 7/24 taranıyor. Sıcaklıklar nominal sınırda; alev veya duman tespit edilirse otonom söndürme nozulları devreye girer.",
+                json: {
+                    event: "THERMAL_SCAN_OPTIMAL",
+                    zone: "ZONE_03_PRODUCTION",
+                    avg_temp: "23.8 C",
+                    threat_prob: "0.02%",
+                    extinguish_readiness: "STANDBY"
+                }
+            }
+        };
+
+        function setSimStep(stepNumber) {
+            const stepData = simScenarioSteps[stepNumber];
+            if (!stepData) return;
+
+            for (let i = 1; i <= 5; i++) {
+                const btn = document.getElementById(`simStepBtn-${i}`);
+                if (btn) {
+                    if (i === stepNumber) {
+                        btn.className = 'px-3.5 py-2 rounded-xl text-xs font-semibold bg-cyan-600 text-white shadow-md transition-all flex items-center gap-1.5';
+                    } else {
+                        btn.className = 'px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-900/90 text-slate-400 hover:text-white border border-white/5 transition-all flex items-center gap-1.5';
+                    }
+                }
+            }
+
+            const titleEl = document.getElementById('simStepTitle');
+            const descEl = document.getElementById('simStepDesc');
+            const badgeEl = document.getElementById('simStepBadge');
+            const jsonEl = document.getElementById('simStepJson');
+
+            if (titleEl) titleEl.innerText = stepData.title;
+            if (descEl) descEl.innerText = stepData.desc;
+            if (badgeEl) badgeEl.innerText = stepData.badge;
+            if (jsonEl) jsonEl.innerText = JSON.stringify(stepData.json, null, 2);
+
+            playBeep(620 + stepNumber * 50, 0.05);
+        }
+
+        // Product Modal Details Data
+        const productDetailsData = {
+            'PARKON': {
+                title: 'PARKON',
+                category: 'Plaka Tanıma & Otopark Otomasyonu (ALPR/PTS)',
+                icon: 'fa-solid fa-car-side',
+                iconColor: 'text-cyan-400',
+                border: 'border-cyan-800',
+                desc: 'PARKON, 4K optik yapay zekâ kameraları ile zorlu hava koşullarında dahi araç plakalarını 18ms içinde okur. Bariyerleri açar, doluluk göstergelerini besler ve kantar ağırlık verilerini WORKON ERP sistemine aktarır.',
+                features: [
+                    '✓ 180 km/s hızda %99.8 tanıma başarısı',
+                    '✓ Otomatik bariyer rölesi ve loop dedektör',
+                    '✓ VIP & Kara Liste uyarı sesli anons',
+                    '✓ A-Z otopark doluluk ve slot yönlendirme'
+                ]
+            },
+            'WORKON': {
+                title: 'WORKON',
+                category: 'Kurumsal ERP & PDKS Entegrasyon Altyapısı',
+                icon: 'fa-solid fa-briefcase',
+                iconColor: 'text-blue-400',
+                border: 'border-blue-800',
+                desc: 'WORKON, geçiş kontrol donanımlarından gelen yüz, kart, QR ve kantar tartım verilerini doğrudan SAP, Logo, Mikro ve Nebim veri tabanlarına işleyen kurumsal ERP köprüsüdür.',
+                features: [
+                    '✓ Canlı PDKS puantaj & bordro senkronizasyonu',
+                    '✓ Kantar otomatik e-irsaliye kesme',
+                    '✓ Sıfır gecikmeli WebSocket kuyruk mimarisi',
+                    '✓ Çok şubeli ve çok tesisli merkezi raporlama'
+                ]
+            },
+            'VISITON': {
+                title: 'VISITON',
+                category: 'Akıllı Ziyaretçi CRM & Karşılama Yönetimi',
+                icon: 'fa-solid fa-users-viewfinder',
+                iconColor: 'text-emerald-400',
+                border: 'border-emerald-800',
+                desc: 'VISITON, misafirlerinize önceden SMS/E-posta ile tek kullanımlık QR bilet göndererek danışmadaki kuyrukları sıfıra indirir. KVKK metinleri dijital imzalanır, toplantı sahibi anlık bilgilendirilir.',
+                features: [
+                    '✓ Tek kullanımlık şifreli QR geçiş kodu',
+                    '✓ Danışma Kiosk & tablet self-check-in modu',
+                    '✓ Dijital KVKK, İSG eğitimi ve gizlilik onayı',
+                    '✓ PARKON ile araç plakasını otomatik açma'
+                ]
+            },
+            'ACCESON': {
+                title: 'ACCESON',
+                category: 'Biyometrik Geçiş Kontrol & Turnike Yönetimi',
+                icon: 'fa-solid fa-fingerprint',
+                iconColor: 'text-amber-400',
+                border: 'border-amber-800',
+                desc: 'ACCESON; optik 3D yüz tanıma terminalleri, kanatlı turnikeler ve kart okuyucuları merkezi bir yetki matrisinde yönetir. Anti-passback algoritmasıyla kart devretmeyi engeller.',
+                features: [
+                    '✓ 0.2 saniyede canlı 3D yüz tarama',
+                    '✓ Kesin Anti-Passback kural denetimi',
+                    '✓ Mobil NFC ve BLE kapı açma izni',
+                    '✓ Yangın anında otomatik acil serbest bırakma'
+                ]
+            },
+            'FIREON': {
+                title: 'FIREON',
+                category: 'Yapay Zekâlı Optik Yangın Tespiti ve Otonom Söndürme',
+                icon: 'fa-solid fa-fire-extinguisher',
+                iconColor: 'text-rose-400',
+                border: 'border-rose-800',
+                desc: 'FIREON, yüksek tavanlı fabrika ve depolarda dumanın dedektöre ulaşmasını beklemeden; alevi ve ısı yükselişini optik/termal kameralarla 3 saniyede tespit eder ve robotik nozullarla hedefe püskürtme yapar.',
+                features: [
+                    '✓ 3 saniyede optik kıvılcım & alev yakalama',
+                    '✓ Robotik hedefleme nozulu (su/köpük fırlatma)',
+                    '✓ 8-14 µm termal radyometri ısı haritalama',
+                    '✓ ACCESON turnikelerine KOD KIRMIZI tahliye emri'
+                ]
+            }
+        };
+
+        function openProductModal(key) {
+            const data = productDetailsData[key];
+            if (!data) return;
+
+            document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('modalCategory').innerText = data.category;
+            document.getElementById('modalDesc').innerText = data.desc;
+            document.getElementById('modalIcon').className = data.icon;
+            document.getElementById('modalIconWrap').className = `w-12 h-12 rounded-2xl bg-slate-900 flex items-center justify-center text-xl border ${data.border} ${data.iconColor}`;
+
+            const featContainer = document.getElementById('modalFeatures');
+            featContainer.innerHTML = '';
+            data.features.forEach(f => {
+                const item = document.createElement('div');
+                item.className = 'p-2 rounded-lg bg-slate-900/60 border border-white/5';
+                item.innerText = f;
+                featContainer.appendChild(item);
+            });
+
+            const modal = document.getElementById('productDetailModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            playBeep(800, 0.05);
+        }
+
+        function closeProductModal() {
+            const modal = document.getElementById('productDetailModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Facility Solution Calculator
+        const facilityPresets = {
+            'fabrika': {
+                title: 'Endüstriyel Üretim Paketi',
+                desc: 'Ağır araç kantar tartımları, vardiyalı personel devam takibi, yüksek riskli üretim alanlarında otonom yangın algılama ve çevre nizamiyesi güvenliğini birleştiren tam kapsamlı paket.',
+                modules: ['PARKON', 'WORKON', 'VISITON', 'ACCESON', 'FIREON'],
+                speed: '75%', error: '90%', risk: '3 Saniye'
+            },
+            'plaza': {
+                title: 'Akıllı Plaza & İş Merkezi Paketi',
+                desc: 'Yoğun ziyaretçi akışını randevulu QR kodla yöneten, VIP otopark yönlendirmesi sağlayan ve 3D yüz tanımalı hız turnikeleriyle şık bir karşılama deneyimi sunan paket.',
+                modules: ['VISITON', 'ACCESON', 'PARKON', 'WORKON'],
+                speed: '90%', error: '95%', risk: '10 Saniye'
+            },
+            'depo': {
+                title: 'Lojistik Depolama & Antrepo Paketi',
+                desc: 'Tır ve kamyon plakası okuma, kantarlı irsaliye, raf aralarında termal yangın izleme ve kapı bazlı lojistik geçiş optimizasyonunu sağlar.',
+                modules: ['PARKON', 'WORKON', 'FIREON'],
+                speed: '85%', error: '88%', risk: '4 Saniye'
+            },
+            'kampus': {
+                title: 'Kampüs & Sağlık Kompleksi Paketi',
+                desc: 'Binlerce öğrenci, personel veya hastanın geniş açık alanlarda giriş-çıkışını, otopark bariyerlerini ve yüksek güvenlikli laboratuvar kapılarını koordine eder.',
+                modules: ['ACCESON', 'VISITON', 'PARKON', 'WORKON'],
+                speed: '80%', error: '92%', risk: '8 Saniye'
+            }
+        };
+
+        function calculateFacility(typeKey) {
+            playBeep(750, 0.06);
+            const data = facilityPresets[typeKey];
+            if (!data) return;
+
+            const types = ['fabrika', 'plaza', 'depo', 'kampus'];
+            types.forEach(t => {
+                const btn = document.getElementById(`facBtn-${t}`);
+                if (t === typeKey) {
+                    btn.className = 'p-4 rounded-2xl bg-cyan-600 text-white font-bold text-xs flex flex-col items-center gap-2 transition-all shadow-lg';
+                } else {
+                    btn.className = 'p-4 rounded-2xl bg-slate-900 border border-white/10 text-slate-400 hover:text-white font-bold text-xs flex flex-col items-center gap-2 transition-all';
+                }
+            });
+
+            document.getElementById('calcPackageTitle').innerText = data.title;
+            document.getElementById('calcPackageDesc').innerText = data.desc;
+            document.getElementById('calcMetricSpeed').innerText = `+${data.speed}`;
+            document.getElementById('calcMetricError').innerText = `-${data.error}`;
+            document.getElementById('calcMetricRisk').innerText = data.risk;
+
+            document.getElementById('calcBarSpeed').style.width = data.speed;
+            document.getElementById('calcBarError').style.width = data.error;
+
+            const badgesContainer = document.getElementById('calcModuleBadges');
+            badgesContainer.innerHTML = '';
+            data.modules.forEach(m => {
+                const badge = document.createElement('span');
+                badge.className = 'px-2.5 py-1 rounded-lg bg-cyan-950 border border-cyan-800 text-cyan-300 text-xs font-mono font-bold';
+                badge.innerText = m;
+                badgesContainer.appendChild(badge);
+            });
+        }
+
+        // Demo Form Handler
+        function handleDemoSubmit(e) {
+            e.preventDefault();
+            playBeep(900, 0.15);
+            const alertBox = document.getElementById('demoSuccessAlert');
+            alertBox.classList.remove('hidden');
+            e.target.reset();
+        }
+
+        // Login Modal Controls
+        function openLoginModal() {
+            const modal = document.getElementById('loginModal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                playBeep(700, 0.06);
+            }
+        }
+
+        function closeLoginModal() {
+            const modal = document.getElementById('loginModal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        function loginAs(roleTitle) {
+            closeLoginModal();
+            const dashView = document.getElementById('dashboardView');
+            const mainLanding = document.getElementById('mainLanding');
+            const roleEl = document.getElementById('currentUserRole');
+
+            if (roleEl) roleEl.innerText = roleTitle;
+            if (mainLanding) mainLanding.classList.add('hidden');
+            if (dashView) {
+                dashView.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            isDashboardActive = true;
+            initCameraCanvasLoops();
+            addDashboardLog('SİSTEM', `${roleTitle} yetkisi ile oturum açıldı. Tüm telemetriler çevrimiçi.`, 'cyan');
+            playBeep(880, 0.1);
+        }
+
+        function closeDashboard() {
+            const dashView = document.getElementById('dashboardView');
+            const mainLanding = document.getElementById('mainLanding');
+            if (dashView) dashView.classList.add('hidden');
+            if (mainLanding) mainLanding.classList.remove('hidden');
+
+            isDashboardActive = false;
+            if (parkonAnimId) cancelAnimationFrame(parkonAnimId);
+            if (fireonAnimId) cancelAnimationFrame(fireonAnimId);
+            if (twinAnimId) cancelAnimationFrame(twinAnimId);
+            playBeep(520, 0.08);
+        }
+
+        // Camera Canvas Simulation Loops
+        function initCameraCanvasLoops() {
+            const parkonCanvas = document.getElementById('parkonCanvas');
+            const fireonCanvas = document.getElementById('fireonCanvas');
+
+            if (!clockTimer) {
+                clockTimer = setInterval(() => {
+                    const now = new Date();
+                    const timeStr = now.toTimeString().split(' ')[0] + '.' + String(Math.floor(now.getMilliseconds() / 100));
+                    const pTime = document.getElementById('parkonTimeCode');
+                    const fTime = document.getElementById('fireonTimeCode');
+                    if (pTime) pTime.innerText = timeStr;
+                    if (fTime) fTime.innerText = timeStr;
+                }, 100);
+            }
+
+            // PARKON Canvas
+            if (parkonCanvas) {
+                const ctx = parkonCanvas.getContext('2d');
+                let carX = -120;
+                let barrierOpen = false;
+
+                function resizeP() {
+                    parkonCanvas.width = parkonCanvas.parentElement.clientWidth || 480;
+                    parkonCanvas.height = parkonCanvas.parentElement.clientHeight || 270;
+                }
+                resizeP();
+
+                function renderParkon() {
+                    if (!isDashboardActive) return;
+                    ctx.fillStyle = '#070c14';
+                    ctx.fillRect(0, 0, parkonCanvas.width, parkonCanvas.height);
+
+                    // Road
+                    ctx.fillStyle = '#111827';
+                    ctx.fillRect(0, parkonCanvas.height * 0.45, parkonCanvas.width, parkonCanvas.height * 0.55);
+
+                    // Road line
+                    ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+                    ctx.setLineDash([15, 15]);
+                    ctx.beginPath();
+                    ctx.moveTo(0, parkonCanvas.height * 0.72);
+                    ctx.lineTo(parkonCanvas.width, parkonCanvas.height * 0.72);
+                    ctx.stroke();
+                    ctx.setLineDash([]);
+
+                    // Vehicle Move
+                    carX += 1.8;
+                    if (carX > parkonCanvas.width + 120) carX = -100;
+
+                    // Car body
+                    ctx.fillStyle = '#0284c7';
+                    ctx.fillRect(carX, parkonCanvas.height * 0.60, 95, 38);
+                    ctx.fillStyle = '#38bdf8';
+                    ctx.fillRect(carX + 18, parkonCanvas.height * 0.52, 55, 18);
+
+                    // Headlights
+                    ctx.fillStyle = 'rgba(254, 240, 138, 0.25)';
+                    ctx.beginPath();
+                    ctx.moveTo(carX + 95, parkonCanvas.height * 0.65);
+                    ctx.lineTo(carX + 220, parkonCanvas.height * 0.55);
+                    ctx.lineTo(carX + 220, parkonCanvas.height * 0.85);
+                    ctx.closePath();
+                    ctx.fill();
+
+                    // ALPR AI Bounding Box
+                    if (carX > 100 && carX < parkonCanvas.width - 150) {
+                        ctx.strokeStyle = '#22d3ee';
+                        ctx.lineWidth = 2;
+                        ctx.strokeRect(carX + 65, parkonCanvas.height * 0.67, 34, 18);
+                        ctx.fillStyle = '#22d3ee';
+                        ctx.font = '10px monospace';
+                        ctx.fillText('OCR %99.8 [34 PON 1907]', carX + 30, parkonCanvas.height * 0.48);
+                    }
+
+                    // Barrier Arm
+                    ctx.strokeStyle = (codeRedActive || barrierOpen) ? '#10b981' : '#f43f5e';
+                    ctx.lineWidth = 5;
+                    ctx.beginPath();
+                    ctx.moveTo(parkonCanvas.width - 70, parkonCanvas.height * 0.50);
+                    if (codeRedActive || barrierOpen) {
+                        ctx.lineTo(parkonCanvas.width - 70, parkonCanvas.height * 0.20);
+                    } else {
+                        ctx.lineTo(parkonCanvas.width - 190, parkonCanvas.height * 0.62);
+                    }
+                    ctx.stroke();
+
+                    parkonAnimId = requestAnimationFrame(renderParkon);
+                }
+                renderParkon();
+            }
+
+            // FIREON Canvas
+            if (fireonCanvas) {
+                const ctxF = fireonCanvas.getContext('2d');
+                let fireT = 0;
+
+                function resizeF() {
+                    fireonCanvas.width = fireonCanvas.parentElement.clientWidth || 480;
+                    fireonCanvas.height = fireonCanvas.parentElement.clientHeight || 270;
+                }
+                resizeF();
+
+                function renderFireon() {
+                    if (!isDashboardActive) return;
+                    fireT += 0.04;
+                    ctxF.fillStyle = '#0a0305';
+                    ctxF.fillRect(0, 0, fireonCanvas.width, fireonCanvas.height);
+
+                    const cx = fireonCanvas.width / 2 + Math.sin(fireT) * 30;
+                    const cy = fireonCanvas.height / 2 + Math.cos(fireT * 0.8) * 15;
+                    const rad = 70 + Math.sin(fireT * 2) * 8;
+
+                    const grad = ctxF.createRadialGradient(cx, cy, 10, cx, cy, rad);
+                    if (codeRedActive) {
+                        grad.addColorStop(0, 'rgba(239, 68, 68, 0.95)');
+                        grad.addColorStop(0.5, 'rgba(249, 115, 22, 0.6)');
+                        grad.addColorStop(1, 'transparent');
+                    } else {
+                        grad.addColorStop(0, 'rgba(59, 130, 246, 0.4)');
+                        grad.addColorStop(0.6, 'rgba(16, 185, 129, 0.2)');
+                        grad.addColorStop(1, 'transparent');
+                    }
+                    ctxF.fillStyle = grad;
+                    ctxF.beginPath();
+                    ctxF.arc(cx, cy, rad, 0, Math.PI * 2);
+                    ctxF.fill();
+
+                    // Aiming Reticle
+                    ctxF.strokeStyle = codeRedActive ? '#f43f5e' : 'rgba(255, 255, 255, 0.3)';
+                    ctxF.lineWidth = 1;
+                    ctxF.beginPath();
+                    ctxF.arc(cx, cy, 25, 0, Math.PI * 2);
+                    ctxF.moveTo(cx - 35, cy); ctxF.lineTo(cx + 35, cy);
+                    ctxF.moveTo(cx, cy - 35); ctxF.lineTo(cx, cy + 35);
+                    ctxF.stroke();
+
+                    ctxF.fillStyle = codeRedActive ? '#f87171' : '#34d399';
+                    ctxF.font = '10px monospace';
+                    ctxF.fillText(`TARGET: [X:${Math.round(cx)} Y:${Math.round(cy)}]`, cx + 32, cy - 10);
+                    ctxF.fillText(codeRedActive ? 'ALEV HEDEFİ KİLİTLENDİ' : 'ISI DAĞILIMI NORMAL', cx + 32, cy + 6);
+
+                    fireonAnimId = requestAnimationFrame(renderFireon);
+                }
+                renderFireon();
+            }
+        }
+
+        // Add Log to Dashboard
+        function addDashboardLog(mod, msg, color = 'cyan') {
+            const list = document.getElementById('dashboardEventList');
+            if (!list) return;
+            const now = new Date();
+            const timeStr = now.toTimeString().split(' ')[0];
+
+            let colorCls = 'text-cyan-400 border-cyan-800 bg-cyan-950/40';
+            if (color === 'rose') colorCls = 'text-rose-400 border-rose-800 bg-rose-950/40';
+            if (color === 'emerald') colorCls = 'text-emerald-400 border-emerald-800 bg-emerald-950/40';
+            if (color === 'amber') colorCls = 'text-amber-400 border-amber-800 bg-amber-950/40';
+            if (color === 'blue') colorCls = 'text-blue-400 border-blue-800 bg-blue-950/40';
+
+            const item = document.createElement('div');
+            item.className = `p-2 rounded-xl border flex items-center justify-between text-xs ${colorCls}`;
+            item.innerHTML = `
+                <div class="flex items-center gap-2">
+                    <span class="font-bold font-mono">[${mod}]</span>
+                    <span class="text-slate-200">${msg}</span>
+                </div>
+                <span class="text-[10px] text-slate-400 font-mono">${timeStr}</span>
+            `;
+            list.prepend(item);
+        }
+
+        function triggerManualBarrier() {
+            playBeep(900, 0.12);
+            const badge = document.getElementById('barrierStatusBadge');
+            if (badge) {
+                badge.innerText = 'BARİYER DURUMU: MANUEL AÇILDI';
+                badge.className = 'px-2.5 py-1 rounded-md bg-emerald-950 border border-emerald-500 text-[10px] font-mono text-emerald-300';
+            }
+            addDashboardLog('PARKON', 'Giriş bariyeri operatör tarafından manuel açıldı.', 'cyan');
+        }
+
+        function triggerSimulatedFireAlert() {
+            triggerCodeRed();
+        }
+
+        function switchDashTab(tabKey) {
+            playBeep(700, 0.05);
+            const tabs = ['genel', 'twin', 'parkon', 'erp', 'turnstile'];
+            tabs.forEach(t => {
+                const content = document.getElementById(`tabContent-${t}`);
+                const btn = document.getElementById(`tabBtn-${t}`);
+                if (t === tabKey) {
+                    content.classList.remove('hidden');
+                    btn.classList.add('bg-cyan-600', 'text-white');
+                    btn.classList.remove('text-slate-400');
+                } else {
+                    content.classList.add('hidden');
+                    btn.classList.remove('bg-cyan-600', 'text-white');
+                    btn.classList.add('text-slate-400');
+                }
+            });
+
+            if (tabKey === 'twin') {
+                initDigitalTwinCanvas();
+            }
+        }
+
+        // KOD KIRMIZI ACİL TAHLİYE PROTOKOLÜ
+        function triggerCodeRed() {
+            codeRedActive = true;
+            playSiren();
+            const banner = document.getElementById('emergencyAlertBanner');
+            banner.classList.remove('hidden');
+
+            const barrierBadge = document.getElementById('barrierStatusBadge');
+            if (barrierBadge) {
+                barrierBadge.innerText = 'BARİYER DURUMU: KOD KIRMIZI (AÇIK - TAHLİYE)';
+                barrierBadge.className = 'px-2.5 py-1 rounded-md bg-rose-950 border border-rose-500 text-[10px] font-mono text-rose-300 animate-pulse';
+            }
+
+            const fireBadge = document.getElementById('fireStatusBadge');
+            const nozzle = document.getElementById('nozzleStatusText');
+            if (fireBadge) {
+                fireBadge.innerText = 'DİKKAT: KOD KIRMIZI ACİL ALARM TETİKLENDİ!';
+                fireBadge.className = 'px-2.5 py-1 rounded-md bg-rose-950 border border-rose-500 text-[10px] font-mono text-rose-300 animate-pulse';
+            }
+            if (nozzle) {
+                nozzle.innerText = 'TÜM NOZULLAR AKTİF';
+                nozzle.className = 'text-xs font-bold font-mono text-rose-400';
+            }
+
+            const turnstileStatus = document.getElementById('turnstileStatusTitle');
+            const turnstileIcon = document.getElementById('turnstileIcon');
+            const turnstileIconWrap = document.getElementById('turnstileIconWrap');
+            if (turnstileStatus) {
+                turnstileStatus.innerText = 'SERBEST GEÇİŞ (TAHLİYE)';
+                turnstileStatus.className = 'text-2xl font-bold text-rose-400 mt-1';
+                turnstileIcon.className = 'fa-solid fa-door-open text-rose-400';
+                turnstileIconWrap.className = 'w-24 h-24 rounded-full bg-slate-900 border-4 border-rose-500 flex items-center justify-center text-3xl shadow-lg shadow-rose-500/30';
+            }
+
+            addDashboardLog('KOD KIRMIZI', '🚨 MERKEZİ ACİL TAHLİYE BAŞLATILDI! Tüm kapı kilitleri ve nizamiyeler serbest bırakıldı.', 'rose');
+            addDashboardLog('FIREON', '112 İtfaiye ve kriz masasına GPS koordinatlı canlı video akışı aktarıldı.', 'rose');
+            addDashboardLog('WORKON', 'Tahliye Listesi Oluşturuldu: 418 kişi toplanma alanına yönlendiriliyor.', 'blue');
+        }
+
+        function disarmCodeRed() {
+            codeRedActive = false;
+            playBeep(440, 0.1);
+            document.getElementById('emergencyAlertBanner').classList.add('hidden');
+
+            const barrierBadge = document.getElementById('barrierStatusBadge');
+            if (barrierBadge) {
+                barrierBadge.innerText = 'BARİYER DURUMU: OTOMATİK (KAPALI)';
+                barrierBadge.className = 'px-2.5 py-1 rounded-md bg-cyan-950/80 border border-cyan-500/40 text-[10px] font-mono text-cyan-300';
+            }
+
+            const fireBadge = document.getElementById('fireStatusBadge');
+            const nozzle = document.getElementById('nozzleStatusText');
+            if (fireBadge) {
+                fireBadge.innerText = 'ALEV / DUMAN İHTİMALİ: %0.02 (NORMAL)';
+                fireBadge.className = 'px-2.5 py-1 rounded-md bg-emerald-950/80 border border-emerald-500/40 text-[10px] font-mono text-emerald-300';
+            }
+            if (nozzle) {
+                nozzle.innerText = 'NÖBET MODU (HAZIR)';
+                nozzle.className = 'text-xs font-bold font-mono text-emerald-400';
+            }
+
+            const turnstileStatus = document.getElementById('turnstileStatusTitle');
+            const turnstileIcon = document.getElementById('turnstileIcon');
+            const turnstileIconWrap = document.getElementById('turnstileIconWrap');
+            if (turnstileStatus) {
+                turnstileStatus.innerText = 'KİLİTLİ (BEKLEMEDE)';
+                turnstileStatus.className = 'text-2xl font-bold text-white mt-1';
+                turnstileIcon.className = 'fa-solid fa-door-closed text-amber-400';
+                turnstileIconWrap.className = 'w-24 h-24 rounded-full bg-slate-900 border-4 border-amber-400/40 flex items-center justify-center text-3xl';
+            }
+
+            addDashboardLog('GÜVENLİK', 'Kod Kırmızı sonlandırıldı. Tesis normal operasyon moduna geri döndü.', 'emerald');
+        }
+
+        // DIGITAL TWIN 2D/3D FLOOR PLAN CANVAS
+        const twinComponents = [
+            { id: "GATE-PARKON-01", name: "Ana Nizamiye Girişi", module: "PARKON", x: 120, y: 80, type: "gate", status: "Açık / Otomatik", event: "34 PON 1907 Geçiş Yaptı", ip: "192.168.10.21" },
+            { id: "GATE-PARKON-02", name: "Lojistik Tır Girişi & Kantar", module: "WORKON / PARKON", x: 120, y: 260, type: "scale", status: "Tartım Yapılıyor", event: "34 KNT 220 (24.1 Ton)", ip: "192.168.10.22" },
+            { id: "TURN-ACCESON-01", name: "Ana Bina Hız Turnikeleri", module: "ACCESON", x: 380, y: 140, type: "turnstile", status: "Yüz Tanıma Aktif", event: "Selin Korkmaz (Giriş)", ip: "192.168.20.11" },
+            { id: "FIRE-NOZZLE-03", name: "Üretim Hattı AI Yangın Nozulu", module: "FIREON", x: 600, y: 160, type: "fire", status: "Nöbette (23.8°C)", event: "Isı Taraması Normal", ip: "192.168.30.03" },
+            { id: "SERVER-ACCESON-04", name: "Sunucu & Veri Merkezi Kilidi", module: "ACCESON", x: 580, y: 280, type: "lock", status: "Kilitli (Biyometrik)", event: "Yetkisiz Erişim Yok", ip: "192.168.20.15" }
+        ];
+
+        let selectedTwinComp = twinComponents[0];
+
+        function initDigitalTwinCanvas() {
+            const canvas = document.getElementById('digitalTwinCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+
+            function resize() {
+                canvas.width = canvas.parentElement.clientWidth || 700;
+                canvas.height = canvas.parentElement.clientHeight || 380;
+            }
+            resize();
+
+            let tick = 0;
+
+            function drawTwin() {
+                tick += 0.03;
+                ctx.fillStyle = '#050a14';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.strokeStyle = '#0f172a';
+                ctx.lineWidth = 1;
+                for (let x = 0; x < canvas.width; x += 30) {
+                    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke();
+                }
+                for (let y = 0; y < canvas.height; y += 30) {
+                    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
+                }
+
+                ctx.strokeStyle = '#1e293b';
+                ctx.lineWidth = 3;
+                ctx.strokeRect(50, 40, canvas.width - 100, canvas.height - 80);
+
+                ctx.strokeStyle = '#334155';
+                ctx.lineWidth = 1.5;
+                ctx.strokeRect(320, 80, 180, 150);
+                ctx.fillStyle = 'rgba(30, 41, 59, 0.4)';
+                ctx.fillRect(320, 80, 180, 150);
+                ctx.fillStyle = '#64748b';
+                ctx.font = '10px monospace';
+                ctx.fillText('YÖNETİM PLAZA', 340, 105);
+
+                ctx.strokeRect(520, 80, canvas.width - 580, 220);
+                ctx.fillStyle = 'rgba(244, 63, 94, 0.05)';
+                ctx.fillRect(520, 80, canvas.width - 580, 220);
+                ctx.fillStyle = '#f43f5e';
+                ctx.fillText('ÜRETİM & DEPO ALANI', 540, 105);
+
+                twinComponents.forEach(comp => {
+                    const isSelected = selectedTwinComp.id === comp.id;
+                    const scaleX = canvas.width / 750;
+                    const posX = comp.x * scaleX;
+                    const posY = comp.y;
+
+                    ctx.beginPath();
+                    let pulseColor = 'rgba(6, 182, 212, 0.2)';
+                    if (comp.module.includes('FIREON')) pulseColor = 'rgba(244, 63, 94, 0.2)';
+                    if (comp.module.includes('ACCESON')) pulseColor = 'rgba(245, 158, 11, 0.2)';
+                    ctx.fillStyle = pulseColor;
+                    ctx.arc(posX, posY, 14 + Math.sin(tick * 2) * 4, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.beginPath();
+                    let dotColor = '#06b6d4';
+                    if (comp.module.includes('FIREON')) dotColor = '#f43f5e';
+                    if (comp.module.includes('ACCESON')) dotColor = '#f59e0b';
+                    if (comp.module.includes('WORKON')) dotColor = '#3b82f6';
+
+                    ctx.fillStyle = dotColor;
+                    ctx.arc(posX, posY, isSelected ? 8 : 6, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.fillStyle = isSelected ? '#ffffff' : '#94a3b8';
+                    ctx.font = isSelected ? 'bold 10px monospace' : '9px monospace';
+                    ctx.fillText(comp.name, posX + 12, posY + 4);
+                });
+
+                twinAnimId = requestAnimationFrame(drawTwin);
+            }
+            drawTwin();
+
+            canvas.onclick = function(e) {
+                const rect = canvas.getBoundingClientRect();
+                const clickX = e.clientX - rect.left;
+                const clickY = e.clientY - rect.top;
+                const scaleX = canvas.width / 750;
+
+                twinComponents.forEach(comp => {
+                    const posX = comp.x * scaleX;
+                    const posY = comp.y;
+                    const dist = Math.hypot(clickX - posX, clickY - posY);
+                    if (dist < 25) {
+                        selectedTwinComp = comp;
+                        updateTwinDetailPanel(comp);
+                        playBeep(900, 0.05);
+                    }
+                });
+            };
+        }
+
+        function updateTwinDetailPanel(comp) {
+            document.getElementById('twinCompTitle').innerText = comp.name;
+            document.getElementById('twinCompModule').innerText = `MODÜL: ${comp.module}`;
+            document.getElementById('twinCompStatus').innerText = comp.status;
+            document.getElementById('twinCompId').innerText = comp.id;
+            document.getElementById('twinCompEvent').innerText = comp.event;
+            document.getElementById('twinCompIp').innerText = comp.ip;
+        }
+
+        function triggerSelectedTwinAction() {
+            playBeep(1100, 0.1);
+            addDashboardLog(selectedTwinComp.module, `${selectedTwinComp.name} için manuel ping & röle tetiklendi.`, 'cyan');
+        }
+
+        // PARKON Parking Matrix & Search
+        function initParkingGrid() {
+            const grid = document.getElementById('parkingSlotsGrid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            for (let i = 1; i <= 12; i++) {
+                const isOccupied = (i === 2 || i === 5 || i === 8 || i === 9 || i === 11);
+                const slot = document.createElement('div');
+                slot.className = `p-2 rounded-xl border text-center transition-all ${isOccupied ? 'bg-rose-950/40 border-rose-600/40 text-rose-300' : 'bg-emerald-950/40 border-emerald-600/40 text-emerald-300'}`;
+                slot.innerHTML = `
+                    <div class="font-bold">A-${i < 10 ? '0' + i : i}</div>
+                    <div class="text-[9px] mt-0.5">${isOccupied ? 'DOLU' : 'BOŞ'}</div>
+                `;
+                grid.appendChild(slot);
+            }
+        }
+
+        function renderPlateTable(filterText = '') {
+            const tbody = document.getElementById('plateTableBody');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+
+            const filtered = platesDatabase.filter(item => 
+                item.plate.toLowerCase().includes(filterText.toLowerCase()) || 
+                item.driver.toLowerCase().includes(filterText.toLowerCase())
+            );
+
+            filtered.forEach((row, idx) => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-900/50 transition-colors';
+
+                let typeColor = 'bg-cyan-950 text-cyan-300 border-cyan-800';
+                if (row.type === 'VIP') typeColor = 'bg-amber-950 text-amber-300 border-amber-800';
+                if (row.type === 'Kara Liste') typeColor = 'bg-rose-950 text-rose-300 border-rose-800';
+                if (row.type === 'Lojistik') typeColor = 'bg-blue-950 text-blue-300 border-blue-800';
+
+                tr.innerHTML = `
+                    <td class="p-3 text-slate-500">12:3${idx}:10</td>
+                    <td class="p-3 font-bold text-white tracking-wider">${row.plate}</td>
+                    <td class="p-3">${row.driver}</td>
+                    <td class="p-3 text-slate-400">${row.gate}</td>
+                    <td class="p-3"><span class="px-2 py-0.5 rounded border text-[10px] ${typeColor}">${row.type}</span></td>
+                    <td class="p-3 font-semibold ${row.status.includes('ENGELLENDİ') ? 'text-rose-400' : 'text-emerald-400'}">${row.status}</td>
+                    <td class="p-3 text-right">
+                        <button onclick="pingPlate('${row.plate}')" class="px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 text-[10px]">Detay</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function searchPlateTable() {
+            const query = document.getElementById('plateSearchInput').value;
+            renderPlateTable(query);
+        }
+
+        function addMockPlateRecord() {
+            const newPlate = prompt('Eklenecek Araç Plakası:', '34 TEST 999');
+            if (newPlate) {
+                platesDatabase.unshift({
+                    plate: newPlate.toUpperCase(),
+                    driver: "Manuel Ziyaretçi Girişi",
+                    type: "Ziyaretçi",
+                    gate: "Nizamiye #01",
+                    status: "İçeride (A-08)"
+                });
+                renderPlateTable();
+                playBeep(800, 0.08);
+                addDashboardLog('PARKON', `Yeni araç manuel eklendi: [${newPlate.toUpperCase()}]`, 'cyan');
+            }
+        }
+
+        function pingPlate(plate) {
+            playBeep(600, 0.05);
+            addDashboardLog('PARKON', `Plaka arşivi sorgulandı: [${plate}]`, 'cyan');
+        }
+
+        function exportErpDataToCsv() {
+            playBeep(1000, 0.1);
+            let csvContent = "data:text/csv;charset=utf-8,Kayit_No,Islem_Tipi,Personel_Arac,Departman,Zaman,Net_Tartim,ERP_Durumu\n";
+            csvContent += "ERP-9941,Kantar Sevkiyat,34 KNT 220,Granul Hammadde,12:38:14,24180 kg,Tamamlandi\n";
+            csvContent += "PDKS-4012,PDKS Giris,Selin Korkmaz,Ar-Ge,08:24:11,Mesai,Bordroya Islendi\n";
+            csvContent += "VIS-1102,Ziyaretci QR,Burak Sen,Satinalma,10:15:00,1s 45dk,CRM Guncellendi\n";
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "PON_ERP_PDKS_Rapor.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            addDashboardLog('WORKON', 'ERP ve PDKS kayıtları CSV olarak dışa aktarıldı.', 'blue');
+        }
+
+        // ACCESON & VISITON Passage Tester
+        function simulateAccessPassage(scenarioKey) {
+            const titleEl = document.getElementById('turnstileStatusTitle');
+            const descEl = document.getElementById('turnstileFeedbackMsg');
+            const iconWrap = document.getElementById('turnstileIconWrap');
+            const icon = document.getElementById('turnstileIcon');
+            const rawLog = document.getElementById('turnstileRawLog');
+
+            if (scenarioKey === 'kart_yetkili') {
+                playBeep(880, 0.15);
+                titleEl.innerText = "GEÇİŞ ONAYLANDI (AÇIK)";
+                titleEl.className = "text-2xl font-bold text-emerald-400 mt-1";
+                descEl.innerText = "Personel: Mert Demir (PDKS Mesai Başladı)";
+                icon.className = "fa-solid fa-door-open text-emerald-400";
+                iconWrap.className = "w-24 h-24 rounded-full bg-slate-900 border-4 border-emerald-500 flex items-center justify-center text-3xl shadow-lg shadow-emerald-500/20";
+                rawLog.innerHTML = `<div>&gt; YÜZ TANIMA: %99.4 EŞLEŞTİ</div><div>&gt; PDKS: WORKON MESAI SAYACI TETİKLENDİ</div>`;
+                addDashboardLog('ACCESON', 'Turnike #01: Mert Demir yüz tanıma ile başarılı geçiş yaptı.', 'amber');
+            } else if (scenarioKey === 'qr_ziyaretci') {
+                playBeep(920, 0.15);
+                titleEl.innerText = "QR BİLET DOĞRULANDI";
+                titleEl.className = "text-2xl font-bold text-cyan-400 mt-1";
+                descEl.innerText = "Misafir: Ayşe Kaya (Ev Sahibi: Satınalma Departmanı)";
+                icon.className = "fa-solid fa-qrcode text-cyan-400";
+                iconWrap.className = "w-24 h-24 rounded-full bg-slate-900 border-4 border-cyan-500 flex items-center justify-center text-3xl shadow-lg shadow-cyan-500/20";
+                rawLog.innerHTML = `<div>&gt; VISITON_TOKEN: V-998 VALIDATED</div><div>&gt; SMS BILDIRIMI: GORUSULEN KISIYE ILETILDI</div>`;
+                addDashboardLog('VISITON', 'QR Bilet ile ziyaretçi girişi onaylandı: Ayşe Kaya.', 'emerald');
+            } else if (scenarioKey === 'yetkisiz_deneme') {
+                playBeep(250, 0.3, 'square');
+                titleEl.innerText = "ERİŞİM REDDEDİLDİ (403)";
+                titleEl.className = "text-2xl font-bold text-rose-400 mt-1";
+                descEl.innerText = "Sunucu Odası: Yetkisiz Kart Okutuldu!";
+                icon.className = "fa-solid fa-ban text-rose-500";
+                iconWrap.className = "w-24 h-24 rounded-full bg-slate-900 border-4 border-rose-500 flex items-center justify-center text-3xl shadow-lg shadow-rose-500/20";
+                rawLog.innerHTML = `<div>&gt; ACCESS_DENIED: User has no clearance for ZONE_SERVER</div><div>&gt; ALARM_LOGGED: Incident reported to security.</div>`;
+                addDashboardLog('ACCESON', '⚠️ Yetkisiz alan giriş denemesi: Sunucu Odası Kilidi reddetti!', 'rose');
+            } else if (scenarioKey === 'anti_passback') {
+                playBeep(300, 0.25, 'sawtooth');
+                titleEl.innerText = "ANTI-PASSBACK İHLALİ";
+                titleEl.className = "text-2xl font-bold text-amber-400 mt-1";
+                descEl.innerText = "Kart içeride görünürken tekrar okutuldu!";
+                icon.className = "fa-solid fa-arrows-rotate text-amber-500";
+                iconWrap.className = "w-24 h-24 rounded-full bg-slate-900 border-4 border-amber-500 flex items-center justify-center text-3xl shadow-lg shadow-amber-500/20";
+                rawLog.innerHTML = `<div>&gt; REJECTED: User is already INSIDE.</div><div>&gt; PASSBACK_PROTECTION: Card cannot be shared.</div>`;
+                addDashboardLog('ACCESON', '⚠️ Anti-passback kural ihlali engellendi (Kart başkasına devredilemez).', 'amber');
+            }
+        }
+
+        function testManualQrToken() {
+            simulateAccessPassage('qr_ziyaretci');
+        }
+
+        // PON AI Assistant Logic
+        let isAiOpen = false;
+
+        function toggleAiAssistant() {
+            isAiOpen = !isAiOpen;
+            const win = document.getElementById('aiChatWindow');
+            if (isAiOpen) {
+                win.classList.remove('hidden');
+                win.classList.add('flex');
+                playBeep(750, 0.08);
+            } else {
+                win.classList.add('hidden');
+                win.classList.remove('flex');
+            }
+        }
+
+        function askPresetQuestion(text) {
+            document.getElementById('aiUserInput').value = text;
+            handleAiChatSubmit(new Event('submit'));
+        }
+
+        function handleAiChatSubmit(e) {
+            e.preventDefault();
+            const input = document.getElementById('aiUserInput');
+            const msg = input.value.trim();
+            if (!msg) return;
+
+            appendAiMessage('Siz', msg, false);
+            input.value = '';
+
+            setTimeout(() => {
+                let reply = "Bu sorunuz için modül telemetrilerini tarıyorum...";
+                const lower = msg.toLowerCase();
+
+                if (lower.includes('araç') || lower.includes('plaka') || lower.includes('parkon')) {
+                    reply = `Bugün PARKON kameralarından toplam 1,248 araç giriş yaptı. Otopark doluluk oranı %78 (142/180 araç içeride). Son geçen araç: 34 PON 1907.`;
+                } else if (lower.includes('yangın') || lower.includes('ateş') || lower.includes('duman') || lower.includes('ısı') || lower.includes('fireon')) {
+                    reply = `FIREON 32 termal sensör bölgesinde ortalama sıcaklık 23.8°C seviyesinde. Alev/duman riski: %0.02 (Tam Güvenli). Otonom söndürme nozulları nöbet modundadır.`;
+                } else if (lower.includes('bariyer') || lower.includes('kapı') || lower.includes('aç')) {
+                    triggerManualBarrier();
+                    reply = `Nizamiye giriş bariyerine manuel açma komutu iletildi ve bariyer kaldırıldı.`;
+                } else if (lower.includes('personel') || lower.includes('içeride') || lower.includes('ziyaretçi')) {
+                    reply = `ACCESON ve VISITON kayıtlarına göre şu anda tesis içinde 400 personel ve 18 onaylı ziyaretçi bulunmaktadır. Toplam nüfus: 418 kişi.`;
+                } else if (lower.includes('kırmızı') || lower.includes('acil') || lower.includes('tahliye')) {
+                    reply = `Acil durum protokolü için üst menüdeki 'KOD KIRMIZI' butonuna basabilir veya simülatörü tetikleyebilirsiniz. Tüm turnikeler serbest bırakılacaktır.`;
+                } else {
+                    reply = `Sorunuz analiz edildi. PON Ekosistemi (PARKON, WORKON, VISITON, ACCESON, FIREON) tam senkronize çalışıyor. Tüm donanımlar %100 çevrimiçidir.`;
+                }
+
+                appendAiMessage('PON AI', reply, true);
+                playBeep(950, 0.05);
+            }, 400);
+        }
+
+        function appendAiMessage(sender, text, isAi) {
+            const container = document.getElementById('aiChatMessages');
+            const item = document.createElement('div');
+            item.className = `p-2.5 rounded-xl text-xs font-mono ${isAi ? 'bg-slate-900 border border-cyan-500/30 text-cyan-200' : 'bg-cyan-950/80 border border-cyan-700/50 text-white ml-6 text-right'}`;
+            item.innerHTML = `<span class="font-bold ${isAi ? 'text-cyan-400' : 'text-slate-300'} block mb-0.5">${sender}:</span>${text}`;
+            container.appendChild(item);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function simulateVehicleArrival() {
+            playBeep(650, 0.1);
+            addDashboardLog('PARKON', 'Giriş kamerası CAM-01: [06 ABC 882] yaklaştı, bariyer rölesi açıldı.', 'cyan');
+        }
+
+        function clearDashboardLogs() {
+            document.getElementById('dashboardEventList').innerHTML = '';
+        }
+
+        // Initialize Window
+        window.onload = function() {
+            if (window.lucide && typeof lucide.createIcons === 'function') {
+                lucide.createIcons();
+            }
+            setSimStep(1);
+            initParkingGrid();
+            renderPlateTable();
+        };
+    </script>
+</body>
+</html>
