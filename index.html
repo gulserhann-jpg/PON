@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PON Ekosistemi - Entegre Tesis, Güvenlik ve ERP Çözümleri</title>
+    <title>PON Teknoloji | ParkON, WorkON ERP ve VisitON</title>
+<meta name="description" content="PON Teknoloji: ParkON plaka tanıma ve otopark, WorkON ERP, VisitON arıza ve acil kod yönetimi. Yazılım, elektrik ve zayıf akım çözümleri.">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -76,7 +77,10 @@
         ::-webkit-scrollbar-thumb:hover {
             background: rgba(6, 182, 212, 0.7);
         }
-    </style>
+    
+/* PON detailed project presentation */
+section[id]{scroll-margin-top:100px}.pon-section{max-width:1152px;margin:auto;padding:72px 24px}.pon-section h2{font-size:clamp(28px,4vw,42px);line-height:1.2;font-weight:800;letter-spacing:-.035em;margin:14px 0 22px}.pon-eyebrow{font:600 11px monospace;letter-spacing:.13em;color:#67e8f9;text-transform:uppercase}.pon-lead{color:#aebed1;max-width:800px;line-height:1.85;margin-bottom:24px;font-size:16px}.pon-three,.pon-two,.pon-steps{display:grid;gap:18px;margin:24px 0}.pon-three{grid-template-columns:repeat(3,minmax(0,1fr))}.pon-two{grid-template-columns:repeat(2,minmax(0,1fr))}.pon-steps{grid-template-columns:repeat(4,minmax(0,1fr))}.pon-card{padding:26px;border:1px solid #223045;border-radius:20px;background:linear-gradient(135deg,#111d30,#0b1220)}.pon-card h3{font-size:19px;font-weight:700;margin:10px 0}.pon-card p{color:#aebed1;font-size:14px;line-height:1.85}.pon-link{color:#67e8f9;display:inline-block;margin-top:22px;font-size:14px;font-weight:600}.pon-tag{color:#7dd3fc;font-size:12px;line-height:1.7}.pon-flow{border-left:3px solid #06b6d4;background:#102032;padding:20px 24px;border-radius:0 14px 14px 0;font-size:14px;line-height:1.8}.pon-flow p{color:#afc8de;margin-top:6px}.pon-note,.pon-demo-note{color:#b8c5d6;font-size:12px;line-height:1.8}.pon-demo-note{max-width:1104px;margin:0 auto 30px;padding:14px 20px;background:#182235;border:1px solid #43516a;border-radius:12px}.pon-note{margin-top:25px}details.pon-card{margin:12px 0}summary{cursor:pointer;font-weight:600}details p{margin-top:16px}#productDetailModal>div{max-height:85vh;overflow:auto}:focus-visible{outline:2px solid #67e8f9;outline-offset:4px}@media(max-width:1100px){header nav{gap:14px!important}header nav+div{display:none!important}.pon-steps{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:700px){.pon-three,.pon-two,.pon-steps{grid-template-columns:1fr}.pon-section{padding:48px 20px}.pon-card{padding:22px}.pon-demo-note{margin:0 16px 24px}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
 </head>
 <body class="bg-ponDark text-slate-100 font-sans antialiased selection:bg-brandCyan selection:text-black overflow-x-hidden">
 
@@ -101,17 +105,17 @@
                 <a href="#ekosistem" class="hover:text-cyan-400 transition-colors">Ekosistem</a>
                 <a href="#urunler" class="hover:text-cyan-400 transition-colors">Ürünler</a>
                 <a href="#simulasyon" class="hover:text-cyan-400 transition-colors">Entegre Akış</a>
-                <a href="#hesaplayici" class="hover:text-cyan-400 transition-colors">Çözüm Seçici</a>
+                <a href="#hizmetler" class="hover:text-cyan-400 transition-colors">Hizmetler</a>
             </nav>
 
             <!-- Actions -->
             <div class="hidden sm:flex items-center gap-3">
                 <button id="soundToggleBtn" onclick="toggleSoundFx()" title="Sistem Ses Efektlerini Aç/Kapa" class="p-2.5 rounded-xl border border-white/10 hover:border-cyan-400 bg-slate-900/80 text-slate-400 hover:text-cyan-300 transition-all text-xs flex items-center gap-1.5">
-                    <i id="soundIcon" class="fa-solid fa-volume-high text-cyan-400"></i>
+                    <i id="soundIcon" class="fa-solid fa-volume-xmark text-slate-400"></i>
                 </button>
                 <button onclick="openLoginModal()" class="px-4 py-2 rounded-xl border border-cyan-500/30 hover:border-cyan-400 bg-cyan-950/40 text-cyan-300 hover:text-white font-medium text-xs transition-all flex items-center gap-1.5 shadow-sm">
                     <i class="fa-solid fa-chart-line text-cyan-400"></i>
-                    <span>Tesis Operasyon Merkezi</span>
+                    <span>Etkileşimli Demo</span>
                 </button>
                 <a href="#demo" class="px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-medium text-xs transition-all duration-200 shadow-lg shadow-cyan-500/25 flex items-center gap-1.5">
                     <i class="fa-solid fa-wand-magic-sparkles"></i>
@@ -132,7 +136,7 @@
             <a href="#simulasyon" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800">Entegre Akış</a>
             <a href="#hesaplayici" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800">Çözüm Seçici</a>
             <div class="pt-2 flex flex-col gap-2">
-                <button onclick="toggleMobileMenu(); openLoginModal()" class="w-full text-center py-2.5 rounded-xl border border-cyan-500/40 text-cyan-300 font-medium text-xs">Tesis Operasyon Merkezi (Giriş)</button>
+                <button onclick="toggleMobileMenu(); openLoginModal()" class="w-full text-center py-2.5 rounded-xl border border-cyan-500/40 text-cyan-300 font-medium text-xs">Etkileşimli Demo (Giriş)</button>
                 <a href="#demo" onclick="toggleMobileMenu()" class="w-full text-center py-2.5 rounded-xl bg-cyan-600 text-white font-medium text-xs">Demo Talep Et</a>
             </div>
         </div>
@@ -155,192 +159,53 @@
 
                 <!-- Main Title -->
                 <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-5xl mx-auto leading-tight">
-                    Kapıdan ERP'ye <br/>
+                    Otoparktan işletmenize <br/>
                     <span class="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
-                        Kesintisiz Akıllı Tesis Ekosistemi
+                        Sahanızla Birlikte Çalışan Teknoloji
                     </span>
                 </h1>
 
                 <!-- Subtitle -->
                 <p class="mt-6 text-base sm:text-lg text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed">
-                    <strong class="text-white font-semibold">PON</strong> (Passage, Operations & Network); araç plakası tanımadan personel geçişine, ziyaretçi onayından kurumsal ERP'ye ve yapay zekâlı anlık yangın tespitine kadar tüm tesisinizi tek bir zekâda birleştirir.
+                    PON Teknoloji; <strong>ParkON Vision</strong> ile araç geçişlerini, <strong>WorkON Vision ERP</strong> ile işletme süreçlerini, <strong>VisitON</strong> ile arıza ve acil kod bildirimlerini yönetmeniz için yazılım ve saha çözümleri geliştirir.
                 </p>
 
                 <!-- CTA Buttons -->
                 <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
                     <button onclick="loginAs('Tesis Yöneticisi')" class="px-7 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-sm shadow-xl shadow-cyan-500/25 flex items-center gap-2 group transition-all">
-                        <span>Canlı Tesis Panelini Başlat</span>
+                        <span>Örnek Tesis Demosunu Aç</span>
                         <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
                     </button>
                     <a href="#urunler" class="px-7 py-3.5 rounded-2xl glass-panel hover:bg-slate-800 text-slate-200 font-semibold text-sm transition-all border border-white/10 flex items-center gap-2">
                         <i class="fa-solid fa-layer-group text-cyan-400"></i>
-                        <span>5 Çekirdek Modülü İncele</span>
+                        <span>Projelerimizi İncele</span>
                     </a>
                 </div>
 
                 <!-- Metric Highlights -->
                 <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
                     <div class="glass-panel p-4 rounded-2xl">
-                        <div class="text-2xl sm:text-3xl font-extrabold text-cyan-400 font-mono">18 ms</div>
-                        <div class="text-xs text-slate-400 mt-1">ALPR Plaka Tanıma Hızı</div>
+                        <div class="text-2xl sm:text-3xl font-extrabold text-cyan-400 font-mono">ParkON</div>
+                        <div class="text-xs text-slate-400 mt-1">Araç & Otopark</div>
                     </div>
                     <div class="glass-panel p-4 rounded-2xl">
-                        <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400 font-mono">%99.8</div>
-                        <div class="text-xs text-slate-400 mt-1">3D Yüz & Biyometrik Doğruluk</div>
+                        <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400 font-mono">WorkON</div>
+                        <div class="text-xs text-slate-400 mt-1">İşletme & ERP</div>
                     </div>
                     <div class="glass-panel p-4 rounded-2xl">
-                        <div class="text-2xl sm:text-3xl font-extrabold text-rose-400 font-mono">&lt; 3 sn</div>
-                        <div class="text-xs text-slate-400 mt-1">Yapay Zekâ Yangın Algılama</div>
+                        <div class="text-2xl sm:text-3xl font-extrabold text-rose-400 font-mono">VisitON</div>
+                        <div class="text-xs text-slate-400 mt-1">Arıza & Acil Kod</div>
                     </div>
                     <div class="glass-panel p-4 rounded-2xl">
-                        <div class="text-2xl sm:text-3xl font-extrabold text-blue-400 font-mono">%100</div>
-                        <div class="text-xs text-slate-400 mt-1">ERP / PDKS Canlı Entegrasyon</div>
+                        <div class="text-2xl sm:text-3xl font-extrabold text-blue-400 font-mono">PON</div>
+                        <div class="text-xs text-slate-400 mt-1">Mühendislik & Saha</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- PRODUCT MODULES GRID SECTION -->
-        <section id="urunler" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-xs font-mono text-cyan-400 tracking-wider uppercase bg-cyan-950/60 px-3 py-1 rounded-full border border-cyan-800">PON MODÜLER MİMARİSİ</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3">Tesisin Her Noktasına Özelleşmiş 5 Çözüm</h2>
-                <p class="text-slate-400 text-sm mt-3">Birbiriyle doğrudan konuşan, izole kalmayan ve veriyi anında ERP'ye aktaran entegre modül ailesi.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                <!-- 1. PARKON -->
-                <div class="glass-panel p-6 rounded-3xl border border-cyan-500/20 hover:border-cyan-400/50 transition-all group flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-2xl bg-cyan-950 border border-cyan-700/40 flex items-center justify-center text-cyan-400 text-xl mb-5 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-car-side"></i>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-xl font-bold text-white">PARKON</h3>
-                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800">PTS / ALPR</span>
-                        </div>
-                        <p class="text-xs text-slate-300 mt-2 font-medium">Akıllı Plaka Tanıma & Bariyer Otomasyonu</p>
-                        <p class="text-xs text-slate-400 mt-3 leading-relaxed">
-                            Yüksek çözünürlüklü yapay zekâ OCR kameraları ile hız ve açı fark etmeksizin araç plakalarını anında tanır. Kara liste kontrolü, abone otoparkı ve otomatik bariyer açma süreçlerini yönetir.
-                        </p>
-                        <ul class="mt-4 space-y-1.5 text-xs text-slate-300 font-mono">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400 text-[10px]"></i> %99.8 Doğruluk Oranı</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400 text-[10px]"></i> Kantar & Tartım Entegrasyonu</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400 text-[10px]"></i> Otopark Doluluk Göstergesi</li>
-                        </ul>
-                    </div>
-                    <button onclick="openProductModal('PARKON')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-900 hover:bg-cyan-950 text-cyan-300 hover:text-white border border-cyan-800/50 text-xs font-semibold transition-all">
-                        Modülü İncele
-                    </button>
-                </div>
-
-                <!-- 2. WORKON -->
-                <div class="glass-panel p-6 rounded-3xl border border-blue-500/20 hover:border-blue-400/50 transition-all group flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-2xl bg-blue-950 border border-blue-700/40 flex items-center justify-center text-blue-400 text-xl mb-5 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-briefcase"></i>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-xl font-bold text-white">WORKON</h3>
-                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-950 text-blue-300 border border-blue-800">KURUMSAL ERP</span>
-                        </div>
-                        <p class="text-xs text-slate-300 mt-2 font-medium">PDKS, Lojistik Tartım & Süreç Entegrasyonu</p>
-                        <p class="text-xs text-slate-400 mt-3 leading-relaxed">
-                            Turnikelerden ve nizamiye kapılarından akan fiziksel geçiş verilerini SAP, Logo ve Nebim gibi ERP sistemleriyle anlık senkronize eder. Puantaj ve irsaliye süreçlerini otomatikleştirir.
-                        </p>
-                        <ul class="mt-4 space-y-1.5 text-xs text-slate-300 font-mono">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400 text-[10px]"></i> Bordro & Mesai Hesaplama</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400 text-[10px]"></i> Kantar Otomatik İrsaliye</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-blue-400 text-[10px]"></i> Dinamik Vardiya Yönetimi</li>
-                        </ul>
-                    </div>
-                    <button onclick="openProductModal('WORKON')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-900 hover:bg-blue-950 text-blue-300 hover:text-white border border-blue-800/50 text-xs font-semibold transition-all">
-                        Modülü İncele
-                    </button>
-                </div>
-
-                <!-- 3. VISITON -->
-                <div class="glass-panel p-6 rounded-3xl border border-emerald-500/20 hover:border-emerald-400/50 transition-all group flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-2xl bg-emerald-950 border border-emerald-700/40 flex items-center justify-center text-emerald-400 text-xl mb-5 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-users-viewfinder"></i>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-xl font-bold text-white">VISITON</h3>
-                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">ZİYARETÇİ CRM</span>
-                        </div>
-                        <p class="text-xs text-slate-300 mt-2 font-medium">Ön Randevu, KVKK & Temassız QR Bilet</p>
-                        <p class="text-xs text-slate-400 mt-3 leading-relaxed">
-                            Ziyaretçiler tesise gelmeden önce SMS/E-posta ile tek kullanımlık QR kodlarını alır. KVKK metinleri dijital onaylanır, ev sahibine anlık 'Misafiriniz geldi' bildirimi gönderilir.
-                        </p>
-                        <ul class="mt-4 space-y-1.5 text-xs text-slate-300 font-mono">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> Hızlı Danışma Kiosk Modu</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> Dijital KVKK & Gizlilik İmzası</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400 text-[10px]"></i> PARKON ile Plaka Eşleştirme</li>
-                        </ul>
-                    </div>
-                    <button onclick="openProductModal('VISITON')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-900 hover:bg-emerald-950 text-emerald-300 hover:text-white border border-emerald-800/50 text-xs font-semibold transition-all">
-                        Modülü İncele
-                    </button>
-                </div>
-
-                <!-- 4. ACCESON -->
-                <div class="glass-panel p-6 rounded-3xl border border-amber-500/20 hover:border-amber-400/50 transition-all group flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-2xl bg-amber-950 border border-amber-700/40 flex items-center justify-center text-amber-400 text-xl mb-5 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-fingerprint"></i>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-xl font-bold text-white">ACCESON</h3>
-                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800">GEÇİŞ KONTROL</span>
-                        </div>
-                        <p class="text-xs text-slate-300 mt-2 font-medium">Biyometrik, Turnike & Yetki Matrisi</p>
-                        <p class="text-xs text-slate-400 mt-3 leading-relaxed">
-                            3D yüz tanıma terminalleri, turnikeler ve kartlı geçiş kontrolörlerini tek bir merkezi izin mimarisinde birleştirir. Anti-passback denetimiyle güvenliği en üst düzeye çıkarır.
-                        </p>
-                        <ul class="mt-4 space-y-1.5 text-xs text-slate-300 font-mono">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i> Anti-Passback İhlal Koruması</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i> Mobil NFC & BLE Geçiş</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i> Kat & Oda Bazlı Yetkilendirme</li>
-                        </ul>
-                    </div>
-                    <button onclick="openProductModal('ACCESON')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-900 hover:bg-amber-950 text-amber-300 hover:text-white border border-amber-800/50 text-xs font-semibold transition-all">
-                        Modülü İncele
-                    </button>
-                </div>
-
-                <!-- 5. FIREON -->
-                <div class="glass-panel p-6 rounded-3xl border border-rose-500/20 hover:border-rose-400/50 transition-all group flex flex-col justify-between lg:col-span-2">
-                    <div>
-                        <div class="w-12 h-12 rounded-2xl bg-rose-950 border border-rose-700/40 flex items-center justify-center text-rose-400 text-xl mb-5 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-fire-extinguisher"></i>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-xl font-bold text-white">FIREON</h3>
-                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800">YAPAY ZEKÂ YANGIN & SÖNDÜRME</span>
-                        </div>
-                        <p class="text-xs text-slate-300 mt-2 font-medium">Optik/Termal Erken Tespit ve Hedefe Kilitli Otonom Söndürme</p>
-                        <p class="text-xs text-slate-400 mt-3 leading-relaxed">
-                            Geleneksel duman dedektörlerinin yetersiz kaldığı yüksek tavanlı depolarda ve üretim tesislerinde alev ve kıvılcımı 3 saniye içinde tespit eder. Robotik nozullar ile alevin kaynağına su/köpük fırlatarak anında lokal müdahale gerçekleştirir.
-                        </p>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4 text-xs text-slate-300 font-mono">
-                            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-rose-400 text-[10px]"></i> 3 Saniyede Optik Alev Tespiti</div>
-                            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-rose-400 text-[10px]"></i> Koordinat Odaklı Hedef Söndürme</div>
-                            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-rose-400 text-[10px]"></i> Yanlış Alarm Filtreleme (AI)</div>
-                            <div class="flex items-center gap-2"><i class="fa-solid fa-check text-rose-400 text-[10px]"></i> ACCESON Tahliye Entegrasyonu</div>
-                        </div>
-                    </div>
-                    <button onclick="openProductModal('FIREON')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-900 hover:bg-rose-950 text-rose-300 hover:text-white border border-rose-800/50 text-xs font-semibold transition-all">
-                        Modülü İncele
-                    </button>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- LIVE EVENT SIMULATION SECTION -->
-        <section id="simulasyon" class="py-20 bg-slate-950/60 border-y border-white/5">
+<section id="urunler" class="pon-section"><div class="pon-eyebrow">PON TEKNOLOJİ / YAZILIMLAR</div><h2>Sahadaki ihtiyaçtan doğan üç proje.</h2><p class="pon-lead">Her ürün belirli bir operasyonu sadeleştirir. Modül ve entegrasyon kapsamı, tesisin ihtiyacına ve kullanılacak sürüme göre birlikte belirlenir.</p><div class="pon-three"><article class="pon-card"><span class="pon-tag">Plaka tanıma ve otopark yönetimi</span><h3>ParkON Vision</h3><p>Site otoparkından ücretli işletmeye; araç tanıma, geçiş yetkisi ve otopark tarifelerini aynı iş akışında yönetin.</p><a class="pon-link" href="#parkon-detay">Özellikleri ve kullanım akışını incele →</a></article><article class="pon-card"><span class="pon-tag">Tekliften tahsilata işletme yönetimi</span><h3>WorkON Vision ERP</h3><p>Teknik hizmet ve taahhüt şirketleri için müşteri, proje, finans, depo ve personel süreçlerini ortak bir iş akışında toplayın.</p><a class="pon-link" href="#workon-detay">Özellikleri ve kullanım akışını incele →</a></article><article class="pon-card"><span class="pon-tag">Arıza bildirimi ve acil kod yönetimi</span><h3>VisitON</h3><p>Tesis kullanıcıları ve teknik ekipler arasında takip edilebilir bir bildirim süreci oluşturun; acil kodları ayrı bir operasyon akışında yönetin.</p><a class="pon-link" href="#visiton-detay">Özellikleri ve kullanım akışını incele →</a></article></div><p class="pon-note">ACCESON ve FIREON, aşağıdaki etkileşimli demoda yer alan konsept modüllerdir. Ürün teslim kapsamı veya doğrulanmış performans taahhüdü değildir.</p></section><section id="parkon-detay" class="pon-section"><div class="pon-eyebrow">Plaka tanıma ve otopark yönetimi</div><h2>ParkON Vision</h2><p class="pon-lead">Site otoparkından ücretli işletmeye; araç tanıma, geçiş yetkisi ve otopark tarifelerini aynı iş akışında yönetin.</p><p class="pon-tag">Siteler · Apartmanlar · İş merkezleri · Ücretli otoparklar</p><div class="pon-two"><article class="pon-card"><h3>Araç ve yetki yönetimi</h3><p>Tanımlı araçlar, misafir araç kayıtları, VIP ve kara liste ayrımı. Plaka ile birlikte kişi bilgisini izleyin.</p></article><article class="pon-card"><h3>Canlı izleme ve kayıt</h3><p>Kamera görüntüsü, plaka okuma alanı, tarih-saat ve fotoğraflı geçiş kayıtları. Kayıtlarda arama ve görüntü inceleme.</p></article><article class="pon-card"><h3>Ücretli otopark</h3><p>Konut/site kullanımı ile ticari otopark senaryolarını ayırın. İşletmeye uygun tarife ve ücretlendirme kurallarını belirleyin.</p></article><article class="pon-card"><h3>Saha bağlantıları</h3><p>Uyumlu kamera çıkışı veya IO kartı üzerinden bariyer kontrolü; LED ekran ve sesli bildirim seçenekleri. Uyumluluk keşifte değerlendirilir.</p></article></div><div class="pon-flow"><strong>Örnek iş akışı</strong><p>Araç gelir → Plaka okunur → Yetki / tarife kontrol edilir → Geçiş kaydedilir</p></div><a class="pon-link" href="#demo" onclick="selectProject('ParkON Vision')">ParkON Vision için ihtiyaç özeti hazırla →</a></section><section id="workon-detay" class="pon-section"><div class="pon-eyebrow">Tekliften tahsilata işletme yönetimi</div><h2>WorkON Vision ERP</h2><p class="pon-lead">Teknik hizmet ve taahhüt şirketleri için müşteri, proje, finans, depo ve personel süreçlerini ortak bir iş akışında toplayın.</p><p class="pon-tag">Taahhüt firmaları · Teknik servisler · Proje ofisleri · Saha ekipleri</p><div class="pon-two"><article class="pon-card"><h3>Teklif, proje ve fatura</h3><p>Teklif kalemlerini adet ve birim fiyatlarıyla faturaya aktarın; gerektiğinde satır ekleyin, çıkarın veya düzenleyin. Proje ve şantiye bazında iş takibi yapın.</p></article><article class="pon-card"><h3>Finans ve cari hesap</h3><p>Gelir-gider, tahsilat, kasa hareketleri ve müşteri cari hesaplarını takip edin. Bekleyen ve ödenen faturaları inceleyin.</p></article><article class="pon-card"><h3>Depo ve sevkiyat</h3><p>Stok kartlarını ve miktarları yönetin. Sevkiyata fatura ürünlerini aktarın, miktarları düzenleyin ve şantiye teslimatlarını izleyin.</p></article><article class="pon-card"><h3>İK ve çalışan talepleri</h3><p>İzin, avans, mesai ve masraf taleplerinde türe özel alanlar. Personel rolleri ve işlem geçmişiyle sorumlulukları takip edin.</p></article><article class="pon-card"><h3>Yönetim görünümü</h3><p>Şantiye konumları, proje maliyetleri, bakım işleri ve finansal göstergeler üzerinden işletmenizin durumunu değerlendirin.</p></article><article class="pon-card"><h3>Fiyatlandırma ve rapor</h3><p>Dövizli teklif, müşteri fiyat çarpanı ve raporlama seçenekleri. Kur kaynağı ve güncelleme koşulları kurulumda yapılandırılır.</p></article></div><div class="pon-flow"><strong>Örnek iş akışı</strong><p>Müşteri → Teklif → Proje → Sevkiyat / Fatura → Tahsilat</p></div><a class="pon-link" href="#demo" onclick="selectProject('WorkON Vision ERP')">WorkON Vision ERP için ihtiyaç özeti hazırla →</a></section><section id="visiton-detay" class="pon-section"><div class="pon-eyebrow">Arıza bildirimi ve acil kod yönetimi</div><h2>VisitON</h2><p class="pon-lead">Tesis kullanıcıları ve teknik ekipler arasında takip edilebilir bir bildirim süreci oluşturun; acil kodları ayrı bir operasyon akışında yönetin.</p><p class="pon-tag">Hastaneler · Plazalar · Kampüsler · Kurumsal tesisler</p><div class="pon-two"><article class="pon-card"><h3>Arıza bildirimi</h3><p>Kullanıcılar arıza kaydı oluşturur ve kendi bildirimlerinin durumunu takip eder. Teknik ekipler atanan ve tamamlanan işleri görür.</p></article><article class="pon-card"><h3>Müdahale kaydı</h3><p>Arıza öncesi ve sonrası fotoğraflar, müdahale açıklaması ve kullanılan malzemeleri aynı kayıtta toplayın.</p></article><article class="pon-card"><h3>Ekip ve yetkiler</h3><p>Yönetici, teknik personel ve kullanıcı rolleri; ekip yönlendirme ve personel sorumluluklarıyla düzenli iş dağılımı.</p></article><article class="pon-card"><h3>Acil kod akışı</h3><p>Beyaz 1111, Mavi 2222, Pembe 3333, Kırmızı 4444 ve Asayiş 5555. Sesli/görsel uyarı, süre takibi ve müdahale açıklamasıyla kapatma.</p></article><article class="pon-card"><h3>Raporlar ve ayarlar</h3><p>Arıza ve acil durum kayıtlarını inceleyin. Tesis bilgileri, bildirim sesleri ve rapor seçeneklerini ihtiyaca göre yapılandırın.</p></article><article class="pon-card"><h3>Mobil kullanım</h3><p>Mobil tarayıcı üzerinden bildirim ve durum takibi. PWA ve mobil uygulama kapsamı, kullanılan sürüm ve cihazlarla birlikte değerlendirilir.</p></article></div><div class="pon-flow"><strong>Örnek iş akışı</strong><p>Bildirim → Ekibe yönlendirme → Müdahale → Kayıt / Fotoğraf → Kapatma</p></div><a class="pon-link" href="#demo" onclick="selectProject('VisitON')">VisitON için ihtiyaç özeti hazırla →</a></section><section id="hizmetler" class="pon-section"><div class="pon-eyebrow">YAZILIM + SAHA UYGULAMASI</div><h2>Teknolojinin sahadaki karşılığı.</h2><div class="pon-two"><article class="pon-card"><h3>Elektrik ve zayıf akım</h3><p>Elektrik tesisatı, saha uygulaması, zayıf akım altyapısı ve bakım ihtiyaçları için keşif ve projelendirme.</p></article><article class="pon-card"><h3>Kartlı geçiş ve güvenlik</h3><p>Kapı, okuyucu, turnike ve kamera sistemleri için ihtiyaç analizi; donanım uyumluluğu ve kontrol senaryolarının değerlendirilmesi.</p></article><article class="pon-card"><h3>Yangın algılama sistemleri</h3><p>Yangın algılama altyapısı, panel haberleşmesi ve izleme sistemleri için teknik inceleme ve bakım planlaması.</p></article><article class="pon-card"><h3>Yazılım ve teknik danışmanlık</h3><p>İş akışına özel yazılım geliştirme, mevcut sistemlerle bağlantı ihtiyaçlarının analizi ve devreye alma desteği.</p></article></div></section><section id="ekosistem" class="pon-section"><div class="pon-eyebrow">ÇÖZÜM MİMARİSİ</div><h2>İhtiyaca göre başlayın. Kontrollü şekilde büyütün.</h2><p class="pon-lead">ParkON araç operasyonlarını, WorkON işletme süreçlerini, VisitON tesis bildirimlerini ele alır. Ortak kullanımda veri paylaşımı ve entegrasyonlar, mevcut donanım ve yazılım altyapısı incelendikten sonra projelendirilir.</p><div class="pon-three"><article class="pon-card"><h3>Site ve otopark</h3><p>ParkON ile araç ve misafir geçişini yönetin. Teknik arıza takibi gerekiyorsa VisitON kapsamını değerlendirin.</p></article><article class="pon-card"><h3>Teknik hizmet şirketi</h3><p>WorkON ile teklif, stok, saha ve tahsilatı takip edin. Bakım hizmetlerinde VisitON ile bildirim süreçlerini planlayın.</p></article><article class="pon-card"><h3>Hastane ve plaza</h3><p>VisitON ile arıza ve acil kod akışlarını düzenleyin. Araç girişleri ve saha güvenliği için ilave sistemleri keşifte belirleyin.</p></article></div></section><section id="surec" class="pon-section"><div class="pon-eyebrow">PROJENİZ NASIL İLERLER?</div><h2>Keşiften devreye almaya dört adım.</h2><div class="pon-steps"><article class="pon-card"><span class="pon-eyebrow">01</span><h3>İhtiyaç analizi</h3><p>Tesis, kullanıcı, kamera/kapı sayısı ve mevcut iş akışları belirlenir.</p></article><article class="pon-card"><span class="pon-eyebrow">02</span><h3>Kapsam ve teklif</h3><p>Modüller, uyumlu donanımlar, entegrasyonlar ve teslim kriterleri netleştirilir.</p></article><article class="pon-card"><span class="pon-eyebrow">03</span><h3>Kurulum ve test</h3><p>Yapılandırma tamamlanır; saha senaryoları ve kullanıcı yetkileri birlikte test edilir.</p></article><article class="pon-card"><span class="pon-eyebrow">04</span><h3>Eğitim ve destek</h3><p>Kullanıcı eğitimi verilir; bakım ve destek kapsamı projeye göre belirlenir.</p></article></div></section>        <!-- LIVE EVENT SIMULATION SECTION -->
+        <section id="simulasyon" class="py-20 bg-slate-950/60 border-y border-white/5"><p class="pon-demo-note">ETKİLEŞİMLİ KONSEPT DEMO · Ekranlar, olaylar ve sayısal değerler temsilidir; canlı sistem veya ölçülmüş ürün performansı değildir.</p>
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-12">
                     <span class="text-xs font-mono text-cyan-400 tracking-wider uppercase bg-cyan-950/60 px-3 py-1 rounded-full border border-cyan-800">CANLI SENARYO SİMÜLATÖRÜ</span>
@@ -408,7 +273,7 @@
         </section>
 
         <!-- FACILITY SOLUTION CALCULATOR -->
-        <section id="hesaplayici" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="hesaplayici" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><p class="pon-demo-note">ETKİLEŞİMLİ KONSEPT DEMO · Ekranlar, olaylar ve sayısal değerler temsilidir; canlı sistem veya ölçülmüş ürün performansı değildir.</p>
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <span class="text-xs font-mono text-cyan-400 tracking-wider uppercase bg-cyan-950/60 px-3 py-1 rounded-full border border-cyan-800">ÇÖZÜM VE İHTİYAÇ BELİRLEYİCİ</span>
                 <h2 class="text-3xl font-extrabold text-white mt-3">Tesisinize Özel PON Mimarisi</h2>
@@ -490,8 +355,8 @@
                 <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white text-2xl mx-auto mb-6 shadow-xl shadow-cyan-500/30">
                     <i class="fa-solid fa-headset"></i>
                 </div>
-                <h2 class="text-3xl font-extrabold text-white">Tesisiniz İçin Canlı Keşif & Demo İsteyin</h2>
-                <p class="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto mt-2">Mühendislerimiz tesisinizin fiziksel mimarisini incelesin, donanım ve ERP entegrasyon fizibilitesini hazırlasın.</p>
+                <h2 class="text-3xl font-extrabold text-white">Projenizin ihtiyaçlarını birlikte netleştirelim.</h2>
+                <p class="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto mt-2">İhtiyaç özetinizi hazırlayın. Bu statik sayfa form göndermez; bilgilerinizi paylaşabileceğiniz bir talep dosyası oluşturur.</p>
 
                 <form onsubmit="handleDemoSubmit(event)" class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
                     <div>
@@ -509,26 +374,26 @@
                     <div>
                         <label class="block text-xs font-mono text-slate-400 mb-1">İlgilenilen Modüller</label>
                         <select class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-cyan-400">
-                            <option>Tüm PON Ekosistemi (5 Modül)</option>
-                            <option>PARKON (Plaka Tanıma & Otopark)</option>
-                            <option>WORKON + ACCESON (ERP & PDKS)</option>
-                            <option>FIREON (Yangın Algılama & Söndürme)</option>
-                            <option>VISITON (Ziyaretçi CRM)</option>
+                            <option>Genel proje değerlendirmesi</option>
+                            <option>ParkON Vision</option>
+                            <option>WorkON Vision ERP</option>
+                            <option>Elektrik, zayıf akım ve güvenlik sistemleri</option>
+                            <option>VisitON</option>
                         </select>
                     </div>
-                    <div class="sm:col-span-2 mt-2">
+                    <div class="sm:col-span-2"><label for="projectNotes">Proje ihtiyacı</label><textarea id="projectNotes" rows="4" maxlength="4000" placeholder="Tesis türü, kullanıcı / kamera sayısı ve ihtiyaç duyduğunuz iş akışı" class="w-full mt-2 p-3 rounded-xl bg-slate-900 border border-white/10"></textarea></div><div class="sm:col-span-2 mt-2">
                         <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-cyan-500/25">
-                            Ücretsiz Keşif ve Demo Randevusu Oluştur
+                            İhtiyaç Özetini İndir
                         </button>
                     </div>
                 </form>
                 <div id="demoSuccessAlert" class="hidden mt-4 p-3 rounded-xl bg-emerald-950 border border-emerald-500 text-emerald-300 text-xs font-mono">
-                    ✓ Talebiniz başarıyla alındı! Mühendisimiz en geç 2 saat içinde iletişime geçecektir.
+                    İhtiyaç özeti dosyanız hazırlandı. Talebiniz gönderilmedi; indirdiğiniz dosyayı iletişim kanalınız üzerinden paylaşabilirsiniz.
                 </div>
             </div>
         </section>
 
-        <!-- FOOTER -->
+<section id="sss" class="pon-section"><div class="pon-eyebrow">SIK SORULAN SORULAR</div><h2>Proje öncesinde merak edilenler.</h2><details class="pon-card"><summary>Yazılımlar birlikte mi kullanılmalı?</summary><p>Hayır. İhtiyaca uygun ürünle başlanabilir. Ürünler arası veri aktarımı ve üçüncü taraf bağlantılar ayrıca kapsamlandırılır.</p></details><details class="pon-card"><summary>Mevcut kamera ve bariyerlerle çalışır mı?</summary><p>Donanım modeli, bağlantı yöntemi ve erişim koşulları incelenir. ParkON için kamera görüntüsü ve röle/IO uyumluluğu saha testiyle netleştirilir.</p></details><details class="pon-card"><summary>Mobil cihazlardan erişebilir miyim?</summary><p>Mobil erişim; ürün sürümü, ağ yapısı ve cihaz özelliklerine göre değerlendirilir. VisitON için mobil bildirim ve kullanıcı deneyimi kurulum testlerine dahil edilir.</p></details><details class="pon-card"><summary>Demo gerçek cihazları kontrol eder mi?</summary><p>Bu sitedeki panel ve akışlar temsili verilerle çalışan arayüz demolarıdır. Gerçek bariyer, yangın sistemi veya üretim verisine bağlı değildir.</p></details><details class="pon-card"><summary>Kurulum ve destek kapsamı nasıl belirlenir?</summary><p>Kullanıcı sayısı, tesis yapısı, donanım, eğitim ve bakım ihtiyaçları keşifte belirlenerek teklif kapsamına yazılır.</p></details></section>        <!-- FOOTER -->
         <footer class="border-t border-white/5 py-12 bg-slate-950 text-slate-400 text-xs">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div class="flex items-center gap-3">
@@ -540,7 +405,7 @@
                 <div class="flex items-center gap-6 font-mono text-[11px]">
                     <a href="#ekosistem" class="hover:text-cyan-400">Mimari</a>
                     <a href="#urunler" class="hover:text-cyan-400">Ürünler</a>
-                    <button onclick="openLoginModal()" class="hover:text-cyan-400">Müşteri Portali</button>
+                    <button onclick="openLoginModal()" class="hover:text-cyan-400">Örnek Panel</button>
                 </div>
             </div>
         </footer>
@@ -585,8 +450,8 @@
                 <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center font-bold text-white text-xl mx-auto mb-3 shadow-lg shadow-cyan-500/20">
                     PON
                 </div>
-                <h3 class="text-xl font-bold text-white">Tesis Yönetim Portali Girişi</h3>
-                <p class="text-xs text-slate-400 mt-1">Yetkili personel veya tesis yöneticisi girişi</p>
+                <h3 class="text-xl font-bold text-white">Demo Paneli</h3>
+                <p class="text-xs text-slate-400 mt-1">Temsili veriler kullanılır. Gerçek sisteme giriş yapılmaz.</p>
             </div>
 
             <!-- Fast Role Buttons for Interactive Demo -->
@@ -1247,7 +1112,7 @@
     <script>
         // Web Audio Synthesizer (No external audio files needed)
         let audioCtx = null;
-        let isSoundEnabled = true;
+        let isSoundEnabled = false;
 
         function initAudio() {
             if (!audioCtx) {
@@ -1294,7 +1159,7 @@
             isSoundEnabled = !isSoundEnabled;
             const icon = document.getElementById('soundIcon');
             if (isSoundEnabled) {
-                icon.className = 'fa-solid fa-volume-high text-cyan-400';
+                icon.className = 'fa-solid fa-volume-xmark text-slate-400';
                 playBeep(880, 0.08);
             } else {
                 icon.className = 'fa-solid fa-volume-xmark text-slate-500';
@@ -1421,48 +1286,9 @@
 
         // Product Modal Details Data
         const productDetailsData = {
-            'PARKON': {
-                title: 'PARKON',
-                category: 'Plaka Tanıma & Otopark Otomasyonu (ALPR/PTS)',
-                icon: 'fa-solid fa-car-side',
-                iconColor: 'text-cyan-400',
-                border: 'border-cyan-800',
-                desc: 'PARKON, 4K optik yapay zekâ kameraları ile zorlu hava koşullarında dahi araç plakalarını 18ms içinde okur. Bariyerleri açar, doluluk göstergelerini besler ve kantar ağırlık verilerini WORKON ERP sistemine aktarır.',
-                features: [
-                    '✓ 180 km/s hızda %99.8 tanıma başarısı',
-                    '✓ Otomatik bariyer rölesi ve loop dedektör',
-                    '✓ VIP & Kara Liste uyarı sesli anons',
-                    '✓ A-Z otopark doluluk ve slot yönlendirme'
-                ]
-            },
-            'WORKON': {
-                title: 'WORKON',
-                category: 'Kurumsal ERP & PDKS Entegrasyon Altyapısı',
-                icon: 'fa-solid fa-briefcase',
-                iconColor: 'text-blue-400',
-                border: 'border-blue-800',
-                desc: 'WORKON, geçiş kontrol donanımlarından gelen yüz, kart, QR ve kantar tartım verilerini doğrudan SAP, Logo, Mikro ve Nebim veri tabanlarına işleyen kurumsal ERP köprüsüdür.',
-                features: [
-                    '✓ Canlı PDKS puantaj & bordro senkronizasyonu',
-                    '✓ Kantar otomatik e-irsaliye kesme',
-                    '✓ Sıfır gecikmeli WebSocket kuyruk mimarisi',
-                    '✓ Çok şubeli ve çok tesisli merkezi raporlama'
-                ]
-            },
-            'VISITON': {
-                title: 'VISITON',
-                category: 'Akıllı Ziyaretçi CRM & Karşılama Yönetimi',
-                icon: 'fa-solid fa-users-viewfinder',
-                iconColor: 'text-emerald-400',
-                border: 'border-emerald-800',
-                desc: 'VISITON, misafirlerinize önceden SMS/E-posta ile tek kullanımlık QR bilet göndererek danışmadaki kuyrukları sıfıra indirir. KVKK metinleri dijital imzalanır, toplantı sahibi anlık bilgilendirilir.',
-                features: [
-                    '✓ Tek kullanımlık şifreli QR geçiş kodu',
-                    '✓ Danışma Kiosk & tablet self-check-in modu',
-                    '✓ Dijital KVKK, İSG eğitimi ve gizlilik onayı',
-                    '✓ PARKON ile araç plakasını otomatik açma'
-                ]
-            },
+            'PARKON': {"title": "ParkON Vision", "category": "Plaka tanıma ve otopark yönetimi", "icon": "fa-solid fa-car-side", "iconColor": "text-cyan-400", "border": "border-cyan-800", "desc": "Site otoparkından ücretli işletmeye; araç tanıma, geçiş yetkisi ve otopark tarifelerini aynı iş akışında yönetin.", "features": ["Araç ve yetki yönetimi: Tanımlı araçlar, misafir araç kayıtları, VIP ve kara liste ayrımı. Plaka ile birlikte kişi bilgisini izleyin.", "Canlı izleme ve kayıt: Kamera görüntüsü, plaka okuma alanı, tarih-saat ve fotoğraflı geçiş kayıtları. Kayıtlarda arama ve görüntü inceleme.", "Ücretli otopark: Konut/site kullanımı ile ticari otopark senaryolarını ayırın. İşletmeye uygun tarife ve ücretlendirme kurallarını belirleyin.", "Saha bağlantıları: Uyumlu kamera çıkışı veya IO kartı üzerinden bariyer kontrolü; LED ekran ve sesli bildirim seçenekleri. Uyumluluk keşifte değerlendirilir."]},
+            'WORKON': {"title": "WorkON Vision ERP", "category": "Tekliften tahsilata işletme yönetimi", "icon": "fa-solid fa-briefcase", "iconColor": "text-blue-400", "border": "border-blue-800", "desc": "Teknik hizmet ve taahhüt şirketleri için müşteri, proje, finans, depo ve personel süreçlerini ortak bir iş akışında toplayın.", "features": ["Teklif, proje ve fatura: Teklif kalemlerini adet ve birim fiyatlarıyla faturaya aktarın; gerektiğinde satır ekleyin, çıkarın veya düzenleyin. Proje ve şantiye bazında iş takibi yapın.", "Finans ve cari hesap: Gelir-gider, tahsilat, kasa hareketleri ve müşteri cari hesaplarını takip edin. Bekleyen ve ödenen faturaları inceleyin.", "Depo ve sevkiyat: Stok kartlarını ve miktarları yönetin. Sevkiyata fatura ürünlerini aktarın, miktarları düzenleyin ve şantiye teslimatlarını izleyin.", "İK ve çalışan talepleri: İzin, avans, mesai ve masraf taleplerinde türe özel alanlar. Personel rolleri ve işlem geçmişiyle sorumlulukları takip edin.", "Yönetim görünümü: Şantiye konumları, proje maliyetleri, bakım işleri ve finansal göstergeler üzerinden işletmenizin durumunu değerlendirin.", "Fiyatlandırma ve rapor: Dövizli teklif, müşteri fiyat çarpanı ve raporlama seçenekleri. Kur kaynağı ve güncelleme koşulları kurulumda yapılandırılır."]},
+            'VISITON': {"title": "VisitON", "category": "Arıza bildirimi ve acil kod yönetimi", "icon": "fa-solid fa-bell", "iconColor": "text-emerald-400", "border": "border-emerald-800", "desc": "Tesis kullanıcıları ve teknik ekipler arasında takip edilebilir bir bildirim süreci oluşturun; acil kodları ayrı bir operasyon akışında yönetin.", "features": ["Arıza bildirimi: Kullanıcılar arıza kaydı oluşturur ve kendi bildirimlerinin durumunu takip eder. Teknik ekipler atanan ve tamamlanan işleri görür.", "Müdahale kaydı: Arıza öncesi ve sonrası fotoğraflar, müdahale açıklaması ve kullanılan malzemeleri aynı kayıtta toplayın.", "Ekip ve yetkiler: Yönetici, teknik personel ve kullanıcı rolleri; ekip yönlendirme ve personel sorumluluklarıyla düzenli iş dağılımı.", "Acil kod akışı: Beyaz 1111, Mavi 2222, Pembe 3333, Kırmızı 4444 ve Asayiş 5555. Sesli/görsel uyarı, süre takibi ve müdahale açıklamasıyla kapatma.", "Raporlar ve ayarlar: Arıza ve acil durum kayıtlarını inceleyin. Tesis bilgileri, bildirim sesleri ve rapor seçeneklerini ihtiyaca göre yapılandırın.", "Mobil kullanım: Mobil tarayıcı üzerinden bildirim ve durum takibi. PWA ve mobil uygulama kapsamı, kullanılan sürüm ve cihazlarla birlikte değerlendirilir."]},
             'ACCESON': {
                 title: 'ACCESON',
                 category: 'Biyometrik Geçiş Kontrol & Turnike Yönetimi',
@@ -1589,10 +1415,13 @@
         // Demo Form Handler
         function handleDemoSubmit(e) {
             e.preventDefault();
-            playBeep(900, 0.15);
-            const alertBox = document.getElementById('demoSuccessAlert');
-            alertBox.classList.remove('hidden');
-            e.target.reset();
+            const fields = [...e.target.querySelectorAll('input, select, textarea')];
+            const labels = ['Ad Soyad / Ünvan', 'E-posta', 'Şirket / Tesis', 'İlgilenilen çözüm', 'Proje ihtiyacı'];
+            const text = 'PON TEKNOLOJİ — İHTİYAÇ ÖZETİ\n\n' + fields.map((f,i) => labels[i] + ': ' + f.value).join('\n\n');
+            const url = URL.createObjectURL(new Blob(['\ufeff',text], {type:'text/plain;charset=utf-8'}));
+            const a = document.createElement('a'); a.href=url; a.download='PON_Proje_Ihtiyac_Ozeti.txt'; a.click();
+            setTimeout(()=>URL.revokeObjectURL(url),1000);
+            document.getElementById('demoSuccessAlert').classList.remove('hidden');
         }
 
         // Login Modal Controls
@@ -2278,5 +2107,13 @@
             renderPlateTable();
         };
     </script>
-</body>
+<script>
+function selectProject(name){document.querySelector('#demo select').value=name;}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeProductModal();closeLoginModal();}});
+document.querySelectorAll('#demo input').forEach((input,i)=>{input.id='contact-'+i;input.previousElementSibling.setAttribute('for',input.id);});
+document.querySelector('#demo select').id='projectSelect';document.querySelector('#demo select').previousElementSibling.setAttribute('for','projectSelect');
+document.querySelectorAll('button').forEach(b=>{if(!b.textContent.trim()&&!b.getAttribute('aria-label'))b.setAttribute('aria-label',b.title||'Menüyü aç veya kapat');});
+document.querySelector('#productDetailModal button').setAttribute('aria-label','Ürün detayını kapat');
+document.getElementById('demoSuccessAlert').setAttribute('role','status');
+</script></body>
 </html>
