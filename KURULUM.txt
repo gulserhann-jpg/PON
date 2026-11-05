@@ -1,0 +1,46 @@
+PON TEKNOLOJİ — ÇOK SAYFALI WEB SİTESİ
+
+DOSYALAR
+index.html       Ana sayfa / program özetleri / hizmetler
+parkon.html      ParkON Vision detayları ve operasyon demosu
+workon.html      WorkON Vision ERP detayları ve süreç demosu
+visiton.html     VisitON detayları ve arıza / acil kod demosu
+assets/          Ortak tasarım, JavaScript ve orijinal PON Teknoloji logosu
+
+GITHUB'A YÜKLEME
+1. ZIP dosyasını bilgisayarınızda açın.
+2. GitHub Pages için kullandığınız yayın klasörüne dört HTML dosyasını ve
+   assets klasörünü birlikte yükleyin. Klasör yapısını koruyun.
+3. Eski index.html dosyasını yenisiyle değiştirin. Yalnızca index.html yüklemek
+   yeterli değildir: ürün sayfaları ve assets dosyaları da gereklidir.
+4. Mevcut CNAME dosyanızı ve alan adı ayarlarınızı koruyun.
+5. Yayın güncellendikten sonra tarayıcıda Ctrl+F5 ile yenileyin.
+
+DOSYALARI YEREL OLARAK AÇMA
+index.html dosyasına çift tıklayabilirsiniz. Harici CSS, font veya JavaScript
+CDN bağımlılığı bulunmaz. Sayfalar internetsiz de açılabilir.
+
+DEMOLAR
+ParkON: Araç seçimi, giriş/çıkış, VIP/abone/kara liste, araç kaydı, tarife,
+        ücret hesaplama, bariyer durumu, geçiş tablosu ve CSV.
+        Ücretli senaryo için önce tanımsız aracı giriş yaptırın, sonra aynı
+        aracı seçip çıkış yapın. Park süresini değiştirerek tarifeyi deneyin.
+WorkON: Teklif satırları, miktar/fiyat değişimi, proje oluşturma, stok kontrollü
+        sevkiyat, fatura, cari hesap ve tam tahsilat. Akış sıralıdır.
+VisitON: Yeni bildirim, ekibe atama, müdahale, zorunlu açıklamayla kapatma,
+         beş acil kod, 3 dakika hedef süre, müdahale personeli ve CSV raporu.
+
+Demolar gerçek ürünün iş akışlarını temsil eden tanıtım arayüzleridir.
+Gerçek kamera, bariyer, ödeme, fatura servisi veya bildirim sunucusu bağlanmaz.
+Veriler yalnızca sayfa açıkken bellekte tutulur. Yenileme/sıfırlama işlemi
+başlangıç durumuna döndürür. Başka ürün sayfasına gidildiğinde de oturum biter.
+
+Ana sayfadaki proje formu TXT özeti indirir; e-posta göndermez. Gerçek iletişim
+adresi / WhatsApp numarası sağlandığında iletişim bağlantıları eklenebilir.
+
+KONTROLLER
+JavaScript sözdizimi, yerel dosya bağlantıları, sayfa hedefleri ve temel demo
+akışları kontrol edildi. Mantık testleri: yetkisiz geçiş, tekrar giriş,
+ücretli çıkış, stok yetersizliği, fatura-tahsilat, arıza kapatma ve acil kod.
+Bu ortamda gerçek tarayıcıyla görsel test yapılamadı. Yayın öncesinde masaüstü
+ve telefonda görünümü kontrol edin.
