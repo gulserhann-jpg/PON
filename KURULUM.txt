@@ -5,11 +5,13 @@ index.html       Ana sayfa / program özetleri / hizmetler
 parkon.html      ParkON Vision detayları ve operasyon demosu
 workon.html      WorkON Vision ERP detayları ve süreç demosu
 visiton.html     VisitON detayları ve arıza / acil kod demosu
+fireon.html      FireON detayları ve algılama / teyit / noktasal söndürme demosu
+accesson.html    AccessON detayları ve çok yöntemli geçiş kontrol demosu
 assets/          Ortak tasarım, JavaScript ve orijinal PON Teknoloji logosu
 
 GITHUB'A YÜKLEME
 1. ZIP dosyasını bilgisayarınızda açın.
-2. GitHub Pages için kullandığınız yayın klasörüne dört HTML dosyasını ve
+2. GitHub Pages için kullandığınız yayın klasörüne altı HTML dosyasını ve
    assets klasörünü birlikte yükleyin. Klasör yapısını koruyun.
 3. Eski index.html dosyasını yenisiyle değiştirin. Yalnızca index.html yüklemek
    yeterli değildir: ürün sayfaları ve assets dosyaları da gereklidir.
@@ -44,3 +46,21 @@ akışları kontrol edildi. Mantık testleri: yetkisiz geçiş, tekrar giriş,
 ücretli çıkış, stok yetersizliği, fatura-tahsilat, arıza kapatma ve acil kod.
 Bu ortamda gerçek tarayıcıyla görsel test yapılamadı. Yayın öncesinde masaüstü
 ve telefonda görünümü kontrol edin.
+
+V4 EKLENENLER
+FireON: Dört alan / kamera / tavan nozulu, alev ve duman senaryoları,
+yanıltıcı olay eleme, aşamalı teyit, göreli koordinat eşleme, otomatik veya
+operatör onaylı demo, püskürtme animasyonu, kamera/nozul arızası ve bakım
+kilidi, anında durdurma ve CSV olay raporu.
+Bu demo bir yapay zekâ modeli veya gerçek yangın sistemi çalıştırmaz.
+
+AccessON: Kart, yüz biyometrisi, parmak izi, NFC, Bluetooth ve şifre;
+aktif/pasif kullanıcı, kapı yetki matrisi, zaman kuralı, anti-passback,
+kart + PIN, kapı aç/kapat animasyonu, sonuç filtresi ve CSV. Demo PIN: 1234.
+Gerçek biyometrik veya mobil kimlik verisi toplanmaz.
+
+GÜNCELLEME
+index.html, parkon.html, workon.html, visiton.html, fireon.html ve
+accesson.html dosyalarını ana dizine yükleyin. assets klasörünü klasör olarak
+yükleyin; site.css ve site.js dosyaları assets içinde kalmalıdır.
+Mevcut CNAME dosyasını koruyun. Yayın tamamlanınca Ctrl+F5 ile yenileyin.
