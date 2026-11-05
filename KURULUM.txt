@@ -1,66 +1,40 @@
-PON TEKNOLOJİ — ÇOK SAYFALI WEB SİTESİ
+PON TEKNOLOJİ V5 — E-POSTA FORMU
 
-DOSYALAR
-index.html       Ana sayfa / program özetleri / hizmetler
-parkon.html      ParkON Vision detayları ve operasyon demosu
-workon.html      WorkON Vision ERP detayları ve süreç demosu
-visiton.html     VisitON detayları ve arıza / acil kod demosu
-fireon.html      FireON detayları ve algılama / teyit / noktasal söndürme demosu
-accesson.html    AccessON detayları ve çok yöntemli geçiş kontrol demosu
-assets/          Ortak tasarım, JavaScript ve orijinal PON Teknoloji logosu
+GITHUB GÜNCELLEME
+ZIP içindeki yedi HTML dosyasını ve assets klasörünü mevcut yayın dizinine
+yükleyin. assets klasörünü bütün olarak yükleyin. Mevcut CNAME dosyasını koruyun.
+Yayın tamamlanınca Ctrl+F5 ile yenileyin.
 
-GITHUB'A YÜKLEME
-1. ZIP dosyasını bilgisayarınızda açın.
-2. GitHub Pages için kullandığınız yayın klasörüne altı HTML dosyasını ve
-   assets klasörünü birlikte yükleyin. Klasör yapısını koruyun.
-3. Eski index.html dosyasını yenisiyle değiştirin. Yalnızca index.html yüklemek
-   yeterli değildir: ürün sayfaları ve assets dosyaları da gereklidir.
-4. Mevcut CNAME dosyanızı ve alan adı ayarlarınızı koruyun.
-5. Yayın güncellendikten sonra tarayıcıda Ctrl+F5 ile yenileyin.
+FORMUN ÇALIŞMASI
+İletişim formu HTTPS POST ile FormSubmit üzerinden info@ponteknoloji.com
+adresine gönderilir. SMTP parolası gerekmez ve site kodunda parola bulunmaz.
+Formda ad soyad, firma/tesis, program, e-posta, isteğe bağlı telefon ve proje
+ihtiyacı bulunur. Spam doğrulaması açıktır; gizli bot tuzağı eklenmiştir.
 
-DOSYALARI YEREL OLARAK AÇMA
-index.html dosyasına çift tıklayabilirsiniz. Harici CSS, font veya JavaScript
-CDN bağımlılığı bulunmaz. Sayfalar internetsiz de açılabilir.
+İLK AKTİVASYON — ZORUNLU
+1. Önce info@ponteknoloji.com hesabına normal e-posta geldiğini doğrulayın.
+   METUnic DNS / posta kutusu kurulumu tamamlanmış olmalıdır.
+2. Güncellenmiş canlı sitenin iletişim formunu kendiniz test bilgileriyle doldurun.
+3. Açılırsa spam doğrulamasını tamamlayın.
+4. info@ponteknoloji.com gelen kutusuna gelen FormSubmit aktivasyon mesajındaki
+   bağlantıyı açıp onaylayın. Spam klasörüne de bakın.
+5. Formu ikinci kez gönderin; e-postanın tüm alanlarla geldiğini kontrol edin.
+6. Gelen talep mesajına Yanıtla diyerek müşterinin formda yazdığı e-posta
+   adresine cevap verebilirsiniz.
 
-DEMOLAR
-ParkON: Araç seçimi, giriş/çıkış, VIP/abone/kara liste, araç kaydı, tarife,
-        ücret hesaplama, bariyer durumu, geçiş tablosu ve CSV.
-        Ücretli senaryo için önce tanımsız aracı giriş yaptırın, sonra aynı
-        aracı seçip çıkış yapın. Park süresini değiştirerek tarifeyi deneyin.
-WorkON: Teklif satırları, miktar/fiyat değişimi, proje oluşturma, stok kontrollü
-        sevkiyat, fatura, cari hesap ve tam tahsilat. Akış sıralıdır.
-VisitON: Yeni bildirim, ekibe atama, müdahale, zorunlu açıklamayla kapatma,
-         beş acil kod, 3 dakika hedef süre, müdahale personeli ve CSV raporu.
+Gönderim harici FormSubmit hizmetine bağlıdır. FormSubmit aktivasyonu ve
+gerçek e-posta teslimi bu paket hazırlanırken yapılmamıştır. Sorunda iletişim
+bölümündeki doğrudan e-posta bağlantısı kullanılabilir.
 
-Demolar gerçek ürünün iş akışlarını temsil eden tanıtım arayüzleridir.
-Gerçek kamera, bariyer, ödeme, fatura servisi veya bildirim sunucusu bağlanmaz.
-Veriler yalnızca sayfa açıkken bellekte tutulur. Yenileme/sıfırlama işlemi
-başlangıç durumuna döndürür. Başka ürün sayfasına gidildiğinde de oturum biter.
+ÖNEMLİ
+Formu file:// üzerinden değil, yayınlanmış https://ponteknoloji.com üzerinden
+test edin. Başarı sayfası e-postanın gelen kutusuna teslim edildiğini kanıtlamaz.
 
-Ana sayfadaki proje formu TXT özeti indirir; e-posta göndermez. Gerçek iletişim
-adresi / WhatsApp numarası sağlandığında iletişim bağlantıları eklenebilir.
+DEMO PANELLERİ
+ParkON, WorkON, VisitON, FireON ve AccessON tanıtım simülasyonlarıdır.
+Gerçek cihaz veya üretim verisine bağlı değildir; sayfa yenilenince sıfırlanır.
+FireON gerçek yangın tespiti ya da söndürme yapmaz.
 
 KONTROLLER
-JavaScript sözdizimi, yerel dosya bağlantıları, sayfa hedefleri ve temel demo
-akışları kontrol edildi. Mantık testleri: yetkisiz geçiş, tekrar giriş,
-ücretli çıkış, stok yetersizliği, fatura-tahsilat, arıza kapatma ve acil kod.
-Bu ortamda gerçek tarayıcıyla görsel test yapılamadı. Yayın öncesinde masaüstü
-ve telefonda görünümü kontrol edin.
-
-V4 EKLENENLER
-FireON: Dört alan / kamera / tavan nozulu, alev ve duman senaryoları,
-yanıltıcı olay eleme, aşamalı teyit, göreli koordinat eşleme, otomatik veya
-operatör onaylı demo, püskürtme animasyonu, kamera/nozul arızası ve bakım
-kilidi, anında durdurma ve CSV olay raporu.
-Bu demo bir yapay zekâ modeli veya gerçek yangın sistemi çalıştırmaz.
-
-AccessON: Kart, yüz biyometrisi, parmak izi, NFC, Bluetooth ve şifre;
-aktif/pasif kullanıcı, kapı yetki matrisi, zaman kuralı, anti-passback,
-kart + PIN, kapı aç/kapat animasyonu, sonuç filtresi ve CSV. Demo PIN: 1234.
-Gerçek biyometrik veya mobil kimlik verisi toplanmaz.
-
-GÜNCELLEME
-index.html, parkon.html, workon.html, visiton.html, fireon.html ve
-accesson.html dosyalarını ana dizine yükleyin. assets klasörünü klasör olarak
-yükleyin; site.css ve site.js dosyaları assets içinde kalmalıdır.
-Mevcut CNAME dosyasını koruyun. Yayın tamamlanınca Ctrl+F5 ile yenileyin.
+Form hedefi, yöntemi, alan adları, yerel bağlantılar ve JavaScript sözdizimi
+kontrol edildi. Canlı gönderim ve görsel tarayıcı doğrulaması yapılmadı.

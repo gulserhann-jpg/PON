@@ -8,7 +8,7 @@ function toast(t){$('#toast').textContent=t;$('#toast').hidden=false;clearTimeou
 function download(name,content,type='text/plain;charset=utf-8'){const url=URL.createObjectURL(new Blob(['\ufeff',content],{type}));const a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 function csv(name,rows){download(name,rows.map(r=>r.map(v=>'"'+String(v).replace(/^[=+@-]/,"'$&").replaceAll('"','""')+'"').join(';')).join('\r\n'),'text/csv;charset=utf-8');}
 $('.menu-toggle').addEventListener('click',()=>{const open=$('#site-nav').classList.toggle('open');$('.menu-toggle').setAttribute('aria-expanded',String(open));});
-if($('#brief-form'))$('#brief-form').addEventListener('submit',e=>{e.preventDefault();const d=new FormData(e.target);download('PON_Proje_Ozeti.txt','PON TEKNOLOJİ — PROJE ÖZETİ\n\n'+[...d].map(([k,v])=>({name:'Ad soyad',company:'Firma / tesis',product:'Program',email:'E-posta',notes:'Proje ihtiyacı'}[k]+': '+v)).join('\n\n'));toast('Proje özeti indirildi. Bilgileriniz gönderilmedi.');});
+// Contact form uses native HTTPS POST; provider handles CAPTCHA and delivery.
 const page=document.body.dataset.page, app=$('#demo-app');
 let state,tab='', fireTimer=null;
 function metric(label,value,note=''){return `<div class="metric"><span>${label}</span><b>${value}</b><small>${note}</small></div>`;}
