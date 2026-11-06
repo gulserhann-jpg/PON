@@ -8,3 +8,6 @@
 @media(max-width:700px){.product-grid{grid-template-columns:1fr}.product-card:last-child{grid-column:span 1}.fire-stages{grid-template-columns:repeat(3,minmax(0,1fr))}.access-visual{height:260px;gap:22px}.reader{width:120px;padding:10px}.reader-screen{height:145px}.door-frame{width:110px;height:190px}.identity-symbol{font-size:38px}.site-header nav{gap:20px}}
 
 .contact-email{display:inline-block;font-size:clamp(17px,2.4vw,25px);font-weight:650;color:var(--teal);margin:0 0 15px;overflow-wrap:anywhere}.form-honeypot{display:none!important}#brief-form .small a{text-decoration:underline}
+
+/* Keep the complete navigation accessible at tablet widths. */
+@media(min-width:701px) and (max-width:1050px){.menu-toggle{display:block;background:white;border:1px solid var(--line);border-radius:4px;padding:9px 12px;font-size:12px}.site-header nav{display:none;position:absolute;top:86px;left:0;right:0;background:white;border-bottom:1px solid var(--line);padding:22px 32px;flex-direction:column;align-items:stretch;gap:18px}.site-header nav.open{display:flex}.site-header nav .nav-cta{display:block}}

@@ -7,6 +7,10 @@ let toastTimer;
 function toast(t){$('#toast').textContent=t;$('#toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').hidden=true,4500);}
 function download(name,content,type='text/plain;charset=utf-8'){const url=URL.createObjectURL(new Blob(['\ufeff',content],{type}));const a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 function csv(name,rows){download(name,rows.map(r=>r.map(v=>'"'+String(v).replace(/^[=+@-]/,"'$&").replaceAll('"','""')+'"').join(';')).join('\r\n'),'text/csv;charset=utf-8');}
+// Shared navigation: identical product list on every page.
+const navigationItems=[['index','Ana sayfa'],['parkon','ParkON'],['workon','WorkON'],['visiton','VisitON'],['fireon','FireON'],['accesson','AccessON']];
+const currentPage=location.pathname.split('/').pop().replace(/\.html$/,'')||'index';
+if($('#site-nav'))$('#site-nav').innerHTML=navigationItems.map(([key,label])=>`<a href="${key}.html?v=7" ${key===currentPage?'aria-current="page"':''}>${label}</a>`).join('')+'<a class="nav-cta" href="index.html?v=7#iletisim">Projenizi planlayın ↗</a>';
 $('.menu-toggle').addEventListener('click',()=>{const open=$('#site-nav').classList.toggle('open');$('.menu-toggle').setAttribute('aria-expanded',String(open));});
 // Contact form uses native HTTPS POST; provider handles CAPTCHA and delivery.
 const page=document.body.dataset.page, app=$('#demo-app');

@@ -1,40 +1,13 @@
-PON TEKNOLOJİ V5 — E-POSTA FORMU
+PON TEKNOLOJİ V7 — FORMSPREE
 
-GITHUB GÜNCELLEME
-ZIP içindeki yedi HTML dosyasını ve assets klasörünü mevcut yayın dizinine
-yükleyin. assets klasörünü bütün olarak yükleyin. Mevcut CNAME dosyasını koruyun.
-Yayın tamamlanınca Ctrl+F5 ile yenileyin.
+ZIP içindeki tüm HTML dosyalarını ve assets klasörünü GitHub deposunun köküne yükleyin. assets klasörünü bütün olarak yükleyin. Mevcut CNAME dosyasını koruyun.
+Yayın tamamlanınca https://ponteknoloji.com/index.html?v=7 adresini açın ve Ctrl+F5 yapın.
 
-FORMUN ÇALIŞMASI
-İletişim formu HTTPS POST ile FormSubmit üzerinden info@ponteknoloji.com
-adresine gönderilir. SMTP parolası gerekmez ve site kodunda parola bulunmaz.
-Formda ad soyad, firma/tesis, program, e-posta, isteğe bağlı telefon ve proje
-ihtiyacı bulunur. Spam doğrulaması açıktır; gizli bot tuzağı eklenmiştir.
+Form hedefi: https://formspree.io/f/xdeejvyw
+Form HTTPS POST kullanır. Formspree kendi doğrulama ve sonuç ekranını gösterir. Eski FormSubmit yönlendirmeleri kaldırıldı.
+Formspree panelinde bu formun bildirim alıcısını info@ponteknoloji.com olarak kontrol edin; istenirse adres doğrulamasını tamamlayın. Alıcı adresi form kimliği üzerinden panelde yönetilir.
+Canlı sitenin formunu test bilgileriyle gönderin. Formspree gönderim listesinde ve info@ponteknoloji.com gelen kutusunda kaydı kontrol edin; spam klasörüne de bakın.
+Bu pakette gerçek e-posta gönderimi yapılmadı; alıcı ayarı panelinize erişilmeden doğrulanamaz.
 
-İLK AKTİVASYON — ZORUNLU
-1. Önce info@ponteknoloji.com hesabına normal e-posta geldiğini doğrulayın.
-   METUnic DNS / posta kutusu kurulumu tamamlanmış olmalıdır.
-2. Güncellenmiş canlı sitenin iletişim formunu kendiniz test bilgileriyle doldurun.
-3. Açılırsa spam doğrulamasını tamamlayın.
-4. info@ponteknoloji.com gelen kutusuna gelen FormSubmit aktivasyon mesajındaki
-   bağlantıyı açıp onaylayın. Spam klasörüne de bakın.
-5. Formu ikinci kez gönderin; e-postanın tüm alanlarla geldiğini kontrol edin.
-6. Gelen talep mesajına Yanıtla diyerek müşterinin formda yazdığı e-posta
-   adresine cevap verebilirsiniz.
-
-Gönderim harici FormSubmit hizmetine bağlıdır. FormSubmit aktivasyonu ve
-gerçek e-posta teslimi bu paket hazırlanırken yapılmamıştır. Sorunda iletişim
-bölümündeki doğrudan e-posta bağlantısı kullanılabilir.
-
-ÖNEMLİ
-Formu file:// üzerinden değil, yayınlanmış https://ponteknoloji.com üzerinden
-test edin. Başarı sayfası e-postanın gelen kutusuna teslim edildiğini kanıtlamaz.
-
-DEMO PANELLERİ
-ParkON, WorkON, VisitON, FireON ve AccessON tanıtım simülasyonlarıdır.
-Gerçek cihaz veya üretim verisine bağlı değildir; sayfa yenilenince sıfırlanır.
-FireON gerçek yangın tespiti ya da söndürme yapmaz.
-
-KONTROLLER
-Form hedefi, yöntemi, alan adları, yerel bağlantılar ve JavaScript sözdizimi
-kontrol edildi. Canlı gönderim ve görsel tarayıcı doğrulaması yapılmadı.
+Tüm sayfalarda FireON ve AccessON dahil ortak menü bulunur.
+Ürün panelleri tanıtım simülasyonlarıdır; gerçek donanıma bağlı değildir.
