@@ -1,13 +1,14 @@
-PON TEKNOLOJİ V7 — FORMSPREE
+PON Teknoloji — VisitON Tanıtım Videosu / v8
 
-ZIP içindeki tüm HTML dosyalarını ve assets klasörünü GitHub deposunun köküne yükleyin. assets klasörünü bütün olarak yükleyin. Mevcut CNAME dosyasını koruyun.
-Yayın tamamlanınca https://ponteknoloji.com/index.html?v=7 adresini açın ve Ctrl+F5 yapın.
+Bu paket PON_Teknoloji_Formspree_v7 temel alınarak hazırlanmıştır.
+1. ZIP dosyasını bilgisayarınızda açın.
+2. GitHub sitenizin index.html dosyasının bulunduğu klasöre paketin İÇİNDEKİ dosyaları ve assets klasörünü yükleyin. ZIP dosyasını yüklemeyin.
+3. Mevcut CNAME dosyanızı silmeyin veya değiştirmeyin.
+4. Değişiklikleri kaydedin (Commit changes) ve Pages yayınının tamamlanmasını bekleyin.
+5. https://ponteknoloji.com/visiton.html?v=8#tanitim adresinde videoyu kontrol edin.
 
-Form hedefi: https://formspree.io/f/xdeejvyw
-Form HTTPS POST kullanır. Formspree kendi doğrulama ve sonuç ekranını gösterir. Eski FormSubmit yönlendirmeleri kaldırıldı.
-Formspree panelinde bu formun bildirim alıcısını info@ponteknoloji.com olarak kontrol edin; istenirse adres doğrulamasını tamamlayın. Alıcı adresi form kimliği üzerinden panelde yönetilir.
-Canlı sitenin formunu test bilgileriyle gönderin. Formspree gönderim listesinde ve info@ponteknoloji.com gelen kutusunda kaydı kontrol edin; spam klasörüne de bakın.
-Bu pakette gerçek e-posta gönderimi yapılmadı; alıcı ayarı panelinize erişilmeden doğrulanamaz.
-
-Tüm sayfalarda FireON ve AccessON dahil ortak menü bulunur.
-Ürün panelleri tanıtım simülasyonlarıdır; gerçek donanıma bağlı değildir.
+Ana sayfadaki VisitON kartına tanıtım bağlantısı, VisitON sayfasına video oynatıcı, kapak, Türkçe altyazı ve anlatım metni eklendi.
+Video otomatik başlamaz. Altyazıyı oynatıcının altyazı menüsünden açabilirsiniz.
+Mevcut Formspree adresi ve etkileşimli demolar korunmuştur.
+Bu pakette video üretim kodları ve seslendirme kaynakları bulunmaz.
+Canlı sitenizde v7 sonrası ek değişiklikler yaptıysanız tam paketi yüklemek bunların üzerine yazabilir; önce deponuzun yedeğini alın.
