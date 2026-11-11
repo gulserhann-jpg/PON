@@ -10,7 +10,7 @@ function csv(name,rows){download(name,rows.map(r=>r.map(v=>'"'+String(v).replace
 // Shared navigation: identical product list on every page.
 const navigationItems=[['index','Ana sayfa'],['parkon','ParkON'],['workon','WorkON'],['visiton','VisitON'],['fireon','FireON'],['accesson','AccessON']];
 const currentPage=location.pathname.split('/').pop().replace(/\.html$/,'')||'index';
-if($('#site-nav'))$('#site-nav').innerHTML=navigationItems.map(([key,label])=>`<a href="${key}.html?v=8" ${key===currentPage?'aria-current="page"':''}>${label}</a>`).join('')+'<a class="nav-cta" href="index.html?v=8#iletisim">Projenizi planlayın ↗</a>';
+if($('#site-nav'))$('#site-nav').innerHTML=navigationItems.map(([key,label])=>`<a class="nav-link ${key==='index'?'nav-home':'nav-product'}" data-product="${key}" href="${key}.html?v=9" ${key===currentPage?'aria-current="page"':''}>${key==='index'?'':`<img src="assets/logos/${key}-icon.svg" alt="" width="24" height="24">`}<span>${label}</span></a>`).join('')+'<a class="nav-cta" href="index.html?v=9#iletisim">Projenizi planlayın ↗</a>';
 $('.menu-toggle').addEventListener('click',()=>{const open=$('#site-nav').classList.toggle('open');$('.menu-toggle').setAttribute('aria-expanded',String(open));});
 // Contact form uses native HTTPS POST; provider handles CAPTCHA and delivery.
 const page=document.body.dataset.page, app=$('#demo-app');
