@@ -1,14 +1,8 @@
-PON Teknoloji — VisitON Tanıtım Videosu / v8
+PON TEKNOLOJİ V9 — ANİMASYONLU MENÜ VE ÜRÜN LOGOLARI
 
-Bu paket PON_Teknoloji_Formspree_v7 temel alınarak hazırlanmıştır.
-1. ZIP dosyasını bilgisayarınızda açın.
-2. GitHub sitenizin index.html dosyasının bulunduğu klasöre paketin İÇİNDEKİ dosyaları ve assets klasörünü yükleyin. ZIP dosyasını yüklemeyin.
-3. Mevcut CNAME dosyanızı silmeyin veya değiştirmeyin.
-4. Değişiklikleri kaydedin (Commit changes) ve Pages yayınının tamamlanmasını bekleyin.
-5. https://ponteknoloji.com/visiton.html?v=8#tanitim adresinde videoyu kontrol edin.
+ZIP dosyasını açın. İçindeki HTML dosyalarını ve assets klasörünü GitHub deposundaki mevcut dosyaların üzerine yükleyin. CNAME dosyasını silmeyin. assets klasörünü içerikleriyle birlikte yükleyin.
+Yayın bittikten sonra https://ponteknoloji.com/index.html?v=9 adresini açın ve Ctrl+F5 yapın.
 
-Ana sayfadaki VisitON kartına tanıtım bağlantısı, VisitON sayfasına video oynatıcı, kapak, Türkçe altyazı ve anlatım metni eklendi.
-Video otomatik başlamaz. Altyazıyı oynatıcının altyazı menüsünden açabilirsiniz.
-Mevcut Formspree adresi ve etkileşimli demolar korunmuştur.
-Bu pakette video üretim kodları ve seslendirme kaynakları bulunmaz.
-Canlı sitenizde v7 sonrası ek değişiklikler yaptıysanız tam paketi yüklemek bunların üzerine yazabilir; önce deponuzun yedeğini alın.
+Yeni logolar: assets/logos/ klasöründe beş ürün için ikon, açık zemin ve koyu zemin SVG dosyaları. logolar.html sayfasında hepsi görülebilir.
+Masaüstünde renk geçişi, simge hareketi ve aktif sayfa çizgisi; mobilde açılır menü. Azaltılmış hareket tercihi desteklenir. Destekleyen tarayıcılarda sayfa geçişi uygulanır.
+VisitON videosu, tüm simülasyonlar ve Formspree bağlantısı korunmuştur.
