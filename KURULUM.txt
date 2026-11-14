@@ -1,8 +1,4 @@
-PON TEKNOLOJİ V9 — ANİMASYONLU MENÜ VE ÜRÜN LOGOLARI
-
-ZIP dosyasını açın. İçindeki HTML dosyalarını ve assets klasörünü GitHub deposundaki mevcut dosyaların üzerine yükleyin. CNAME dosyasını silmeyin. assets klasörünü içerikleriyle birlikte yükleyin.
-Yayın bittikten sonra https://ponteknoloji.com/index.html?v=9 adresini açın ve Ctrl+F5 yapın.
-
-Yeni logolar: assets/logos/ klasöründe beş ürün için ikon, açık zemin ve koyu zemin SVG dosyaları. logolar.html sayfasında hepsi görülebilir.
-Masaüstünde renk geçişi, simge hareketi ve aktif sayfa çizgisi; mobilde açılır menü. Azaltılmış hareket tercihi desteklenir. Destekleyen tarayıcılarda sayfa geçişi uygulanır.
-VisitON videosu, tüm simülasyonlar ve Formspree bağlantısı korunmuştur.
+V10 / SafeON, ShiftON, GuardON
+Tüm HTML dosyalarını ve assets klasörünü mevcut GitHub deposuna yükleyin. CNAME dosyasını koruyun. Yayın sonrası Ctrl+F5 yapın.
+Logolar HTML içine gömülüdür; SVG kaynakları assets/logos içindedir. Bu değişiklik eksik logo klasörü kaynaklı sorunları önler. V9 hatasının canlı kaynağı doğrulanmamıştır.
+Yeni demolar temsili ve tarayıcı içidir; gerçek analiz, yaptırım, bordro veya donanım işlemi yapmaz.
